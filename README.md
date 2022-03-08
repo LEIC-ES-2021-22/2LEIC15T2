@@ -13,6 +13,7 @@ Prevenir a formação de filas de espera em vários departamentos, através da i
 
 ## Main Features
 Estado da fila<br>
+Mostrar a fila corespondente baseado na localização<br>
 Estatisticas<br>
 Prever filas futuras<br>
 Verificação mensagens anteriores por outros utilizadores<br>
