@@ -12,7 +12,13 @@ ZveiN - up201707984<br>
 Prevenir a formação de filas de espera em vários departamentos, através da implementação de um sistema de informação sobre o estado atual das filas, destina-se a toda comunidade FEUP.<br>
 
 ## Main Features
-Queue status<br>
+Estado da fila<br>
+Estatisticas<br>
+Prever filas futuras<br>
+Verificação mensagens anteriores por outros utilizadores<br>
+Comentarios por utilizadores<br>
+Identificador de utilizadores maliciosos (trolls)<br>
+Exclusão de utilizadores maliciosos (trolls)<br>
 
 ## Required API's
-Prolly none!<br>
+Google Maps<br>
