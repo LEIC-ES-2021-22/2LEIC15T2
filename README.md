@@ -20,6 +20,7 @@ Verificação mensagens anteriores por outros utilizadores<br>
 Comentarios por utilizadores<br>
 Identificador de utilizadores maliciosos (trolls)<br>
 Exclusão de utilizadores maliciosos (trolls)<br>
+Aplicação de filtros para pesquisa de filas<br>
 
 ## Required API's
 Google Maps<br>
