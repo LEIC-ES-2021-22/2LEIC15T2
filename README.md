@@ -15,12 +15,13 @@ Prevenir a formação de filas de espera em vários departamentos, através da i
 Estado da fila<br>
 Mostrar a fila corespondente baseado na localização<br>
 Estatisticas<br>
-Prever filas futuras<br>
+Prever filas futuras e verificar histórico das mesmas<br>
 Verificação mensagens anteriores por outros utilizadores<br>
 Comentarios por utilizadores<br>
 Identificador de utilizadores maliciosos (trolls)<br>
 Exclusão de utilizadores maliciosos (trolls)<br>
 Aplicação de filtros para pesquisa de filas<br>
+Caso utilizador esteja perto dum local de filas, envio de pergunta sobre estado real da fila em que se encontra<br>
 
 ## Required API's
 Google Maps<br>
