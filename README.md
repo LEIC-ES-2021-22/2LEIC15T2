@@ -23,3 +23,4 @@ Exclusão de utilizadores maliciosos (trolls)<br>
 
 ## Required API's
 Google Maps<br>
+Parte da informação importante para o funcionamento da nossa aplicação parte do link https://sites.google.com/g.uporto.pt/ocupa-pisos-bibfeup/ que dita a lotação dos lugares na biblioteca
