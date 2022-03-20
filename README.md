@@ -28,10 +28,10 @@ Please contact us!
 
 Thank you!
 
-João Costa - up201909699<br>
-Luís Leite - up201906750<br>
+João Costa - up201909699@up.pt<br>
+Luís Leite - up201906750@up.pt<br>
 Pedro Correia up202006199@up.pt<br>
-Miguel Tavares  - up202002811<br>
-João Duarte - up201707984<br>
+Miguel Tavares - up202002811@up.pt<br>
+João Duarte - up201707984@up.pt<br>
 
 ---
