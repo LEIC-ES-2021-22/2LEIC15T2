@@ -7,22 +7,22 @@ Prevenir a formação de filas de espera em vários lugares da faculdade, atrav�
 
 ### Main Features
 Indicate an  initial/tentative list of high-level features - high-level capabilities or desired services of the system that are necessary to deliver benefits to the users (cf. RUP).
-  -Estado da fila: o utilizador consegue ver o estado atual (bom,mau..) da fila que escolheu<br>
-  -Mostrar a fila corespondente baseado na localização<br>
-  -Estatisticas: o utilizador consegue ver o estado da fila selecionada nos dias anteriores<br>
-  -Prever filas futuras e verificar histórico das mesmas: o programa faz uma estimativa de como a fila vai estar baseado em dias anteriores<br>
-  -Verificação mensagens anteriores por outros utilizadores<br>
-  -Comentarios por utilizadores<br>
-  -Identificador de utilizadores maliciosos (trolls)<br>
-  -Exclusão de utilizadores maliciosos (trolls)<br>
-  -Aplicação de filtros para pesquisa de filas<br>
-  -Caso utilizador esteja perto dum local de filas, envio de pergunta sobre estado real da fila em que se encontra<br>
- - Feature 1 - Short description
- - Feature 2 - Short description
+ - Estado da fila: o utilizador consegue ver o estado atual (bom,mau..) da fila que escolheu
+ - Mostrar a fila corespondente baseado na localização
+ - Estatisticas: o utilizador consegue ver o estado da fila selecionada nos dias anteriores;
+ - Prever filas futuras e verificar histórico das mesmas: o programa faz uma estimativa de como a fila vai estar baseado em dias anteriores;
+ - Verificação mensagens anteriores por outros utilizadores: o utilizador consegue ver as mensagens que foram enviadas por outros utilizadores no passado;
+ - Comentarios por utilizadores: os utilizadores são capazes de deixar comentários nos chats de cada fila;
+ - Identificador de utilizadores maliciosos (trolls): as mensagens vão ter um sistema de avaliação, outros utilizadores que estejam na mesma fila podem dizer se a mensagem está a dizer a verdade ou não. Se uma pessoa tiver várias mensagens erradas o sistema marca-o como um troll;
+ - Exclusão de utilizadores maliciosos (trolls): o sistema ao detetar que existe um troll bloqueia essa pessoa ou da app ou de conseguir comentar nos chats.
+ - Aplicação de filtros para pesquisa de filas: possibilidade de filtrar as listas que aparecem, alfabeticamente, por departamento... 
+ - Caso utilizador esteja perto dum local de filas, envio de pergunta sobre estado real da fila em que se encontra;
+ 
 ...
 
 ### Assumptions and dependencies
 Indicate an  initial/tentative list of assumptions and dependencies 
 
-- Student timetable from sigarra
-- 
+- As pessoas dizem sempre a verdade;
+- Todas as pessoas estão a usar a sua conta do sigarra  
+- NS 
