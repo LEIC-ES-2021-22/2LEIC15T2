@@ -5,13 +5,10 @@ In this section, you should describe all kinds of requirements for your module: 
 
 ### Use case model 
 
-Create a use-case diagram in UML with all high-level use cases possibly addressed by your module, to clarify the context and boundaries of your application.
-
-Give each use case a concise, results-oriented name. Use cases should reflect the tasks the user needs to be able to accomplish using the system. Include an action verb and a noun. 
 
 Example:
  <p align="center" justify="center">
-  <img src="https://github.com/LEIC-ES-2021-22/templates/blob/main/images/UseCaseView.png"/>
+  <img src="https://github.com/LEIC-ES-2021-22/2LEIC15T2/blob/ccb3739cd8b9ae0ea4c8b092ed6931c5da583555/images/UseCaseDiagram.jpg"/>
 </p>
 
 
@@ -28,8 +25,8 @@ Example:
 |||
 | --- | --- |
 | *Name* | Purchase tickets online |
-| *Actor* |  Customer | 
-| *Description* | The customer purchases one or more tickets for an event, using an electronic payment method, having the option to choose places. |
+| *Actor* |  User | 
+| *Description* | The user can see the queues available to choose and after choosing one, the user can comment on the state of the queue, see the queue's state by reading other user's comments, see our program prevision on how the queue will be or see how the queue was in the past. When the user sends a message about the state of a queue, after some time the program will send a survey asking about the current state of the queue. |
 | *Preconditions* | - The customer has electronic payment means. <br> - The event has tickets available on-sale. |
 | *Postconditions* | - The customer gets the electronic tickets with a QR code. <br> - The customer is charged of the tickets’ cost, and the seller credited. <br> - Information of tickets sold & seats available for the event is updated. |
 | *Normal flow* | 1. The customer accesses the web page of the ticketing system.<br> 2. The system shows the list of events with tickets on-sale.<br> 3. The customer selects the event and the number of tickets.<br> 4. If wanted, the costumer may Choose Places.<br> 5. The system shows the total price to pay.<br> 6. The system redirects the customer to Electronic Payment.<br> 7. The system delivers the electronic tickets to the customer with a unique identifier and QR code. |
