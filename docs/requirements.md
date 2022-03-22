@@ -27,8 +27,8 @@ Example:
 | *Name* | Purchase tickets online |
 | *Actor* |  User | 
 | *Description* | The user can see the queues available to choose and after choosing one, the user can comment on the state of the queue, see the queue's state by reading other user's comments, see our program prevision on how the queue will be or see how the queue was in the past. When the user sends a message about the state of a queue, after some time the program will send a survey asking about the current state of the queue. |
-| *Preconditions* | - The customer has electronic payment means. <br> - The event has tickets available on-sale. |
-| *Postconditions* | - The customer gets the electronic tickets with a QR code. <br> - The customer is charged of the tickets’ cost, and the seller credited. <br> - Information of tickets sold & seats available for the event is updated. |
+| *Preconditions* | - The user is logged in UniFEUP. <br> - The queue has an empty predifined state. <br> - Not marked as a malicious user |
+| *Postconditions* | - The user will be able to see his comment in the chat. <br> - The queue state is updated based on the user's message. <br>  |
 | *Normal flow* | 1. The customer accesses the web page of the ticketing system.<br> 2. The system shows the list of events with tickets on-sale.<br> 3. The customer selects the event and the number of tickets.<br> 4. If wanted, the costumer may Choose Places.<br> 5. The system shows the total price to pay.<br> 6. The system redirects the customer to Electronic Payment.<br> 7. The system delivers the electronic tickets to the customer with a unique identifier and QR code. |
 | *Alternative flows and exceptions* | 1. [Payment failure] If, in step 6 of the normal flow the payment fails, the system gives the user the possibility to cancel or retry. |
 
