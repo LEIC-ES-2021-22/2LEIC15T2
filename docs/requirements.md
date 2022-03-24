@@ -8,21 +8,28 @@ In this section, you should describe all kinds of requirements for your module: 
 
 Example:
  <p align="center" justify="center">
-  <img src="https://github.com/LEIC-ES-2021-22/2LEIC15T2/blob/ccb3739cd8b9ae0ea4c8b092ed6931c5da583555/images/UseCaseDiagram.jpg"/>
+  <img src="../images/UseCaseDiagram.png"/>
 </p>
-
-
-
 
 |||
 | --- | --- |
-| *Name* | FeupQ System |
-| *Actor* |  FEUP Community | 
-| *Description* | The user can see queues available to choose and after choosing one, the user can comment on its current state, read other user's comments about it, see some prediction on how the queue will be or even check how the queue was in the past. After submitting a message regarding the state of a queue, the program will, after a while, send a survey asking about the current state of the queue, in order to refresh its state. |
-| *Preconditions* | - The user is logged in UniFEUP. <br> - The queue has an empty predifined state. <br> - Not marked as a malicious user |
-| *Postconditions* | - The user will be able to see his comment in the chat. <br> - The queue state is updated based on the user's message. <br>  |
-| *Normal flow* | 1. The community acesses the system, by using FEUP's sigarra credentials.<br> 2. The system shows the list of queues in many places/departments.<br> 3. The community selects one option from the available ones.<br>  -The community can comment on the current status of the queue.<br> -The community can check the actual state on the queue<br> -The community can check predictions and its history.<br> 4. After some minutes, the system may send a quick survey/notification to the community in order to update the queue status, if the community is near the queue. |
-| *Alternative flows and exceptions* | 1. [Marked as troll]- If in step x or in step y a comment or message is posted by a user which is marked as a troll, then its answers/posts will be rejected.<br> 2. If wanted, a queue filter is available.  |
+| *Name* | Check List of Places |
+| *Actor* |  Uni app User | 
+| *Description* | The user can check all avaliable places |
+| *Preconditions* | - The user is logged in UniFEUP. <br>|
+| *Postconditions* | - The selected queue will be displayed <br>  |
+| *Normal flow* | 1. The community acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of supported places <br>|
+| *Alternative flows and exceptions* | 1. [Filter] After step 2 the user can optionally choose to apply a filter to the results shown |
+
+|||
+| --- | --- |
+| *Name* | Check Place Current State |
+| *Actor* |  Uni app User | 
+| *Description* | Shows the selected place queue and capacity |
+| *Preconditions* | - The User has a place selected. <br>|
+| *Postconditions* | - Nothing (only displays capacity) <br>  |
+| *Normal flow* | 1. The user acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of places<br> 3. The User selects a place.<br> 4 The system shows the selected place capacity and queue status<br>|
+| *Alternative flows and exceptions* | 1. [No Capacity] If, in step 4 of the normal flow, the capacity feature is not support then it will not be displayed. <br> 2. [No Queue] If, in step 4 of the normal flow, the queue feature is not support then it will not be displayed.|
 
 ### User stories
 This section will contain the requirements of the product described as **user stories**. 
