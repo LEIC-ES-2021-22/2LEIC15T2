@@ -24,4 +24,4 @@ Indicate an  initial/tentative list of assumptions and dependencies
 
 - Informação do site:https://sites.google.com/g.uporto.pt/ocupa-pisos-bibfeup/ que dita a lotação dos lugares na biblioteca;
 - Todas as pessoas estão a usar a sua conta do sigarra; 
-- (Adicionar mais se houver)
+
