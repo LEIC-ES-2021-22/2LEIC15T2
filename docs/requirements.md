@@ -1,6 +1,6 @@
 ## Requirements
 
-In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
+
 
 ### Use case model 
 
@@ -25,9 +25,9 @@ Example:
 | *Name* | Comment |
 | *Actor* |  Uni app User | 
 | *Description* | The user can leave a small message |
-| *Preconditions* | - The user chose a place <br>|
+| *Preconditions* | - The user chooses a place <br>|
 | *Postconditions* | - The message will be displayed <br>  |
-| *Normal flow* | 1. The user chose a place.<br> 2. The user leaves a message <br>|
+| *Normal flow* | 1. The user chooses a place.<br> 2. The user leaves a message <br>|
 | *Alternative flows and exceptions* | 1. [Filter] Some words might be filtered.
 
 |||
@@ -44,11 +44,11 @@ Example:
 | --- | --- |
 | *Name* | Check Prediction |
 | *Actor* |  Uni app User | 
-| *Description* | Shows the predicted |
+| *Description* | Shows the predicted queue and/or capicity of the choosen place |
 | *Preconditions* | - The User has a place selected. <br>|
-| *Postconditions* | - Nothing (only displays capacity) <br>  |
-| *Normal flow* | 1. The user acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of places<br> 3. The User selects a place.<br> 4 The system shows the selected place capacity and queue status<br>|
-| *Alternative flows and exceptions* | 1. [No Capacity] If, in step 4 of the normal flow, the capacity feature is not support then it will not be displayed. <br> 2. [No Queue] If, in step 4 of the normal flow, the queue feature is not support then it will not be displayed.|
+| *Postconditions* | - Nothing (only displays the prediction) <br>  |
+| *Normal flow* | 1. The user acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of places<br> 3. The User selects a place.<br> 4 The system shows the selected place capacity and queue status<br>5.The User selects the prediction option <br> 6. The system shows the predicted queue and/or capicity of the choosen place of that day<br>|
+| *Alternative flows and exceptions* | 1. [No Prediction] If, in step 6 of the normal flow, there isn't sufficient data then it will not be displayed. <br> |
 
 |||
 | --- | --- |
@@ -58,7 +58,8 @@ Example:
 | *Preconditions* | - The User has a place selected. <br>|
 | *Postconditions* | - Nothing (only displays previous states) <br>  |
 | *Normal flow* | 1. The user acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of places<br> 3. The User selects a place.<br> 4 The system shows the selected queue previous states<br>|
-| *Alternative flows and exceptions* | None
+| *Alternative flows and exceptions* | 1. [No History] If, in step 4 of the normal flow, there isn't sufficient data then it will not be displayed. <br> |
+
 
 |||
 | --- | --- |
@@ -82,7 +83,7 @@ Example:
 
 |||
 | --- | --- |
-| *Name* | Check Capacity |
+| *Name* | Get Capacity |
 | *Actor* |  Capacity API's | 
 | *Description* | The API will provide us information to display  |
 | *Preconditions* | - Check Place Current State <br>|
@@ -92,12 +93,13 @@ Example:
 
 |||
 | --- | --- |
-| *Name* | Check Queue |
+| *Name* | Update Queue |
 | *Actor* |  Uni App User| 
 | *Description* | The information about Queue will be crowdsourced by the FEUP Community  |
 | *Preconditions* | - Information is outdated <br>|
 | *Postconditions* | - Displayed information will be updated <br>  |
-| *Normal flow* | 1. The user sees a queue, the info is outdated<br> 2. Will Answer a form to update it| None
+| *Normal flow* | 1. The user sees a queue, the info is outdated<br> 2. Will Answer a form to update it<br>
+| *Alternative flows and exceptions* | None
 
 
 
