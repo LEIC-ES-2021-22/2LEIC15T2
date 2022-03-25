@@ -1,4 +1,3 @@
-
 ## Requirements
 
 In this section, you should describe all kinds of requirements for your module: functional and non-functional requirements.
@@ -23,6 +22,16 @@ Example:
 
 |||
 | --- | --- |
+| *Name* | Comment |
+| *Actor* |  Uni app User | 
+| *Description* | The user can leave a small message |
+| *Preconditions* | - The user chose a place <br>|
+| *Postconditions* | - The message will be displayed <br>  |
+| *Normal flow* | 1. The user chose a place.<br> 2. The user leaves a message <br>|
+| *Alternative flows and exceptions* | 1. [Filter] Some words might be filtered.
+
+|||
+| --- | --- |
 | *Name* | Check Place Current State |
 | *Actor* |  Uni app User | 
 | *Description* | Shows the selected place queue and capacity |
@@ -30,6 +39,69 @@ Example:
 | *Postconditions* | - Nothing (only displays capacity) <br>  |
 | *Normal flow* | 1. The user acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of places<br> 3. The User selects a place.<br> 4 The system shows the selected place capacity and queue status<br>|
 | *Alternative flows and exceptions* | 1. [No Capacity] If, in step 4 of the normal flow, the capacity feature is not support then it will not be displayed. <br> 2. [No Queue] If, in step 4 of the normal flow, the queue feature is not support then it will not be displayed.|
+
+|||
+| --- | --- |
+| *Name* | Check Prediction |
+| *Actor* |  Uni app User | 
+| *Description* | Shows the predicted |
+| *Preconditions* | - The User has a place selected. <br>|
+| *Postconditions* | - Nothing (only displays capacity) <br>  |
+| *Normal flow* | 1. The user acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of places<br> 3. The User selects a place.<br> 4 The system shows the selected place capacity and queue status<br>|
+| *Alternative flows and exceptions* | 1. [No Capacity] If, in step 4 of the normal flow, the capacity feature is not support then it will not be displayed. <br> 2. [No Queue] If, in step 4 of the normal flow, the queue feature is not support then it will not be displayed.|
+
+|||
+| --- | --- |
+| *Name* | Check History |
+| *Actor* |  Uni app User | 
+| *Description* | Shows the previous states of queues |
+| *Preconditions* | - The User has a place selected. <br>|
+| *Postconditions* | - Nothing (only displays previous states) <br>  |
+| *Normal flow* | 1. The user acesses the system, by using FEUP's sigarra credentials.<br> 2. The system displays a list of places<br> 3. The User selects a place.<br> 4 The system shows the selected queue previous states<br>|
+| *Alternative flows and exceptions* | None
+
+|||
+| --- | --- |
+| *Name* | Receive Notification (Form) |
+| *Actor* |  Uni app User | 
+| *Description* | Will give a form asking about the states |
+| *Preconditions* | - The User reached a specific place <br>|
+| *Postconditions* | - Nothing (only received the notification) <br>  |
+| *Normal flow* | 1. The user checks the displayed information and will go to the place he desires.<br> 2. When he reaches a notification will be sent with a form<br>
+| *Alternative flows and exceptions* | None
+
+|||
+| --- | --- |
+| *Name* | Answer Form |
+| *Actor* |  Uni app User | 
+| *Description* | The User will answer a form  |
+| *Preconditions* | - A notification was sent before<br>|
+| *Postconditions* | - Displayed information will be updated <br>  |
+| *Normal flow* | 1. The User will open the form<br> 2. Answer a form, to confirm and update information about capacity of places and state of queues<br>
+| *Alternative flows and exceptions* | The user can answer the form at his own will, to update outdated information.
+
+|||
+| --- | --- |
+| *Name* | Check Capacity |
+| *Actor* |  Capacity API's | 
+| *Description* | The API will provide us information to display  |
+| *Preconditions* | - Check Place Current State <br>|
+| *Postconditions* | - Displayed information will be updated <br>  |
+| *Normal flow* | 1. The information in the App will be based on it's information<br>
+| *Alternative flows and exceptions* | None
+
+|||
+| --- | --- |
+| *Name* | Check Queue |
+| *Actor* |  Uni App User| 
+| *Description* | The information about Queue will be crowdsourced by the FEUP Community  |
+| *Preconditions* | - Information is outdated <br>|
+| *Postconditions* | - Displayed information will be updated <br>  |
+| *Normal flow* | 1. The user sees a queue, the info is outdated<br> 2. Will Answer a form to update it| None
+
+
+
+
 
 ### User stories
 This section will contain the requirements of the product described as **user stories**. 
