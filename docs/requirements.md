@@ -106,10 +106,17 @@ Example:
 
 ### Domain model
 
-To better understand the context of the software system, it is very useful to have a simple UML class diagram with all the key concepts (names, attributes) and relationships involved of the problem domain addressed by your module. 
-Also provide a short textual description of each class. 
 
-Example:
  <p align="center" justify="center">
   <img src=https://github.com/LEIC-ES-2021-22/2LEIC15T2/blob/376426be6ec3aab9f29b439bbcee4564e6e463f5/images/DomainModel.drawio.png/>
 </p>
+
+__Place__:  Representa a fila selecionada pelo utilizador<br>
+__Capacity__:  Representa a capacidade máxima, os lugares livres e em uso do local selecionado. <br>
+__DataPointPast__: Representa um historico do local selecionado, por data, capacidade utilizada e estado habitual da fila.<br>
+__DataPointFuture__: Representa uma estimativa/previsão do estado das filas/capacidade do local, agrupado por dias da semana.<br>
+__FEUP Community User__:  Utilizador da aplicação, engloba toda comunidade FEUP, este utilizador pode:<br>
+       - Comentar : Colocar comentários sobre o estado atual de um local num chat.<br>
+       - Reportar : O utilizador pode reportar certos comentários, que não se enquadrem com a realidade atual do local/fila.<br>
+       - Notificação/Inquérito: O utilizador pode responder a um pequeno inquérito sobre o estado atual da fila de um certo local, permitindo uma atualização em tempo real do seu estado.<br>
+
