@@ -108,7 +108,7 @@ Example:
 
 
  <p align="center" justify="center">
-  <img src=https://github.com/LEIC-ES-2021-22/2LEIC15T2/blob/376426be6ec3aab9f29b439bbcee4564e6e463f5/images/DomainModel.drawio.png/>
+  <img src="https://github.com/LEIC-ES-2021-22/2LEIC15T2/blob/dbb1018c6d36b0538f833260a96fcab2249bb828/images/DomainModel.drawio%20(1).png"/>
 </p>
 
 __Place__:  Representa a fila selecionada pelo utilizador<br>
