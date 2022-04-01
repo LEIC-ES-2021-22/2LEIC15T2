@@ -28,8 +28,7 @@ Please contact us!
 
 Thank you!
 
-Interactive Mockup:
-https://quant-ux.com/#/share.html?h=a2aa10afGcdRbzgfJNSbgU693wn5e9QS2ooArP9p61Y0lisZpzCb2MUcYy0u
+[Interactive Mockup](https://quant-ux.com/#/share.html?h=a2aa10afGcdRbzgfJNSbgU693wn5e9QS2ooArP9p61Y0lisZpzCb2MUcYy0u)
 
 João Costa - up201909699@up.pt<br>
 Luís Leite - up201906750@up.pt<br>
