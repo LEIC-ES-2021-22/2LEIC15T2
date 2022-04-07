@@ -25,7 +25,7 @@ To structure our app we used the following diagram:
 To develop our app, we used the Flutter technology.
 For the API's, we are using Google Maps API for GPS information.
 
-![Physical Archi drawio](/images/Physical Archi.drawio.png)
+![Physical Archi drawio](/images/PhysicalArchi.drawio.png)
 
 
 
