@@ -22,8 +22,8 @@ To structure our app we used the following diagram:
 
 ### Physical architecture
 
-To develop our app, we used the Flutter technology. 
-
+To develop our app, we used the Flutter technology.
+For the API's, we are using Google Maps API for GPS information.
 
       <insert professionally made diagram here>
 
