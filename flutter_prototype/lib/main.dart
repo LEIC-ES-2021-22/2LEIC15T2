@@ -6,7 +6,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FEUQ',
+      title: 'FEUPQ',
       theme: ThemeData(primarySwatch: Colors.deepOrange),
       home: Home(),
     );
