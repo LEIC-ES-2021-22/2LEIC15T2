@@ -6,23 +6,51 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FEUPQ',
+      title: 'FEUQ',
       theme: ThemeData(primarySwatch: Colors.deepOrange),
-      home: MyHomePage(),
+      home: Home(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FEUPQ'),
+        title: Center(
+        child: Text('FEUPQ'),
+        ),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Open FEUPQ'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>  MyForm()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class MyForm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text('FEUPQ'),
+        ),
       ),
       body: Column(
         children: [
-          Text('Número Parque'),
+          Text('\nNúmero Parque'),
           TaskList(),
           Text('Estado'),
           TaskList2(),
