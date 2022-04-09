@@ -5,7 +5,7 @@ import 'package:flutter_code/src/server_comm/graphchart.dart';
 import 'package:flutter_code/main.dart';
 
 // ignore: use_key_in_widget_constructors
-class Preview extends StatelessWidget {
+class Preview2 extends StatelessWidget {
   final List<Graph> data = [
     Graph("6-8", 1, charts.ColorUtil.fromDartColor(Colors.green)),
     Graph("8-9", 1, charts.ColorUtil.fromDartColor(Colors.green)),
@@ -28,7 +28,7 @@ class Preview extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              'Previsão',
+              'Historico',
               textAlign: TextAlign.center,
               style: TextStyle(height: 3, fontSize: 20),
             ),

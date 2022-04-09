@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_code/src/objects/facility.dart';
 import 'package:flutter_code/src/form.dart';
 import 'package:flutter_code/src/server_comm/requests.dart';
+import 'package:flutter_code/src/views/chatdetailpage.dart';
 import 'package:flutter_code/src/views/preview.dart';
+import 'package:flutter_code/src/views/preview2.dart';
 
 class FacilityView extends StatelessWidget {
   final Facility facility;
@@ -78,19 +80,19 @@ class FacilityView extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Preview()),
+                MaterialPageRoute(builder: (context) => Preview2()),
               );
             },
           ),
           ElevatedButton(
             child: const Text(
-              'Historico',
+              'Chat',
               textAlign: TextAlign.center,
             ),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Preview()),
+                MaterialPageRoute(builder: (context) => ChatDetailPage()),
               );
             },
           ),
