@@ -7,7 +7,7 @@ To structure our app we used the following diagram:
 
     
 
-![LogicalArchitecture](/images/LogicalArchitecture.jpg)
+![LogicalArchitecture](/images/LogicalArchitecture.png)
 
 
 * We placed the authentication information inside a component, which keeps user data, such as login, register and logout. 
