@@ -1,113 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_code/src/views/facility_view.dart';
+import 'src/server_comm/requests.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FEUPQ',
+      title: 'FEUPQA',
       theme: ThemeData(primarySwatch: Colors.deepOrange),
-      home: Home(),
+      home: const HomeView(),
     );
   }
 }
 
-class Home extends StatelessWidget {
+class HomeView extends StatelessWidget {
+  const HomeView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    List facilityNames = getFacilitiesList();
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-        child: Text('FEUPQ'),
-        ),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Open FEUPQ'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) =>  MyForm()),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-
-
-class MyForm extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text('FEUPQ'),
         ),
       ),
-      body: Column(
-        children: [
-          Text('\nNúmero Parque'),
-          TaskList(),
-          Text('Estado'),
-          TaskList2(),
-        ],
+      body: ListView.builder(
+        itemCount: facilityNames.length,
+        itemBuilder: (context, index) {
+          return Card(
+            child: ListTile(
+              title: Text(facilityNames[index].name),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        FacilityView(facility: facilityNames[index])));
+              },
+            ),
+          );
+        },
       ),
-    );
-  }
-}
-
-class TaskList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TaskItem(label: '1'),
-        TaskItem(label: '2'),
-        TaskItem(label: '3'),
-      ],
-    );
-  }
-}
-
-class TaskList2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TaskItem(label: 'Bom'),
-        TaskItem(label: 'Mais ou Menos'),
-        TaskItem(label: 'Mau'),
-      ],
-    );
-  }
-}
-
-class TaskItem extends StatefulWidget {
-  final String label;
-
-  TaskItem({Key? key, required this.label}) : super(key: key);
-
-  @override
-  _TaskItemState createState() => _TaskItemState();
-}
-
-class _TaskItemState extends State<TaskItem> {
-  bool? _value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          onChanged: (newValue) => setState(() => _value = newValue),
-          value: _value,
-        ),
-        Text(widget.label),
-      ],
     );
   }
 }
