@@ -15,18 +15,29 @@ class FacilityView extends StatelessWidget {
             child: Text(facility.name),
           ),
         ),
-        body: Column(children: [
-          Text(getQueueState()),
-          ElevatedButton(
-            child: const Text('Reportar Estado'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => MyForm(facility: facility)),
-              );
-            },
-          )
-        ]));
+        body: Center(
+            child: Column(children: [
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  getQueueState(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(height: 3, fontSize: 20),
+                ),
+              ),
+              ElevatedButton(
+                child: const Text(
+                  'Reportar Estado',
+                  textAlign: TextAlign.center,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyForm(facility: facility)),
+                  );
+                },
+              )
+            ])));
   }
 }
