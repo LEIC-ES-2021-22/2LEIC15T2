@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FEUPQA',
+      title: 'FEUPQ',
       theme: ThemeData(primarySwatch: Colors.deepOrange),
       home: const HomeView(),
     );
@@ -22,8 +22,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List facilityNames = getFacilitiesList();
-    List facilityCapacities = getCapacitiesList();
+    List facility = getFacilitiesList();
+    var nearestFacility = getNearestFacility();
+
+    facility.remove(nearestFacility);
+    facility.insert(0, nearestFacility);
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -31,17 +34,17 @@ class HomeView extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: facilityNames.length,
+        itemCount: facility.length,
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              title: Text(facilityNames[index].name),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        FacilityView(facility: facilityNames[index], capacity: facilityCapacities[index],)));
-              },
-            ),
+                title: Text(facility[index].name),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => FacilityView(
+                            facility: facility[index],
+                          )));
+                }),
           );
         },
       ),
