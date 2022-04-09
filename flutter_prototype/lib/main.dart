@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FEUPQ',
       theme: ThemeData(primarySwatch: Colors.deepOrange),
-      home: const LoginView(),
+      home: LoginView(),
     );
   }
 }
@@ -60,7 +60,7 @@ class HomeView extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const LoginView()),
+              MaterialPageRoute(builder: (context) => LoginView()),
             );
           },
         )
@@ -69,8 +69,13 @@ class HomeView extends StatelessWidget {
   }
 }
 
-class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
+class LoginView extends StatefulWidget{
+  @override
+  LoginViewState createState() => LoginViewState();
+}
+
+class LoginViewState extends State<LoginView> {
+  bool visible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +90,7 @@ class LoginView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
+                obscureText: true,
                 decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: 'Enter your username',
@@ -94,11 +100,19 @@ class LoginView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
-                decoration: const InputDecoration(
-                  border: UnderlineInputBorder(),
+                obscureText: visible,
+                decoration: InputDecoration(
+                  border: const UnderlineInputBorder(),
                   labelText: 'Enter your password',
+                    suffix: InkWell(
+                      onTap: changePasswordVisibilityState,
+                      child: Icon(
+                        visible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                    )
                 ),
-                obscureText: true,
               ),
             ),
             ElevatedButton(
@@ -117,5 +131,11 @@ class LoginView extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  void changePasswordVisibilityState() {
+    setState(() {
+      visible = !visible;
+    });
   }
 }
