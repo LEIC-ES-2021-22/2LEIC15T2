@@ -82,6 +82,18 @@ class FacilityView extends StatelessWidget {
               );
             },
           ),
+          ElevatedButton(
+            child: const Text(
+              'Historico',
+              textAlign: TextAlign.center,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Preview()),
+              );
+            },
+          ),
         ])));
   }
 }
