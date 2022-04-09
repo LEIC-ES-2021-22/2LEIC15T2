@@ -14,9 +14,9 @@ You can find here detailed about the product (or mini-app or module), from a hig
   * [User stories](./docs/requirements.md#user-stories)
   * [Domain model](./docs/requirements.md#domain-model)
 * [Architecture and Design](./docs/ArchitectureAndDesign.md)
-  * [Logical architecture](./docs/ArchitectureAndDesign.md)
-  * [Physical architecture](./docs/ArchitectureAndDesign.md)
-  * [Prototype]
+  * [Logical architecture](./docs/ArchitectureAndDesign.md#logical-architecture)
+  * [Physical architecture](./docs/ArchitectureAndDesign.md#physical-architecture)
+  * [Prototype](./docs/ArchitectureAndDesign.md#vertical-prototype)
 * [Implementation]
 * [Test]
 * [Configuration and change management]

@@ -36,4 +36,14 @@ For the API's, we are using Google Maps API for GPS information.
 
 ### Vertical prototype
 
-      <It's a prototype because it's the first of its type, our monkey based team is still testing! Come back later!> 
+[As a member of the FEUP community, I want to check the queue status of a facility, so that I can plan ahead.](https://github.com/LEIC-ES-2021-22/2LEIC15T2/issues/3)
+
+![queue](/images/facility_view.jpg)
+
+[As a member of the FEUP community, I want to be able to check a specific facility available capacity, so that I can plan ahead my journey.](https://github.com/LEIC-ES-2021-22/2LEIC15T2/issues/1)
+
+![available capacity](/images/facility_view2.jpg)
+
+[As a member of the FEUP community, I want a way to report on a specific facility about its queue state, so that the community can also know about it.](https://github.com/LEIC-ES-2021-22/2LEIC15T2/issues/6)
+
+![form](/images/form.jpg)
