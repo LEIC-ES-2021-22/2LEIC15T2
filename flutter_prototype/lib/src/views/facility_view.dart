@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_code/src/objects/facility.dart';
 import 'package:flutter_code/src/form.dart';
 import 'package:flutter_code/src/server_comm/requests.dart';
-
+import 'package:flutter_code/src/objects/capacity.dart';
 class FacilityView extends StatelessWidget {
   final Facility facility;
-  const FacilityView({Key? key, required this.facility}) : super(key: key);
+  final Capacity capacity;
+  const FacilityView({Key? key, required this.facility, required this.capacity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,16 @@ class FacilityView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  getQueueState(),
+                  'Max Capacity: ' +
+                      capacity.maxCapacity +
+                      '\n' +
+                      'Available spots: ' +
+                      capacity.availableCapacity +
+                      '\n' +
+                      'Occupied spots: ' +
+                      capacity.occupiedCapacity +
+                      '\n' +
+                      getQueueState(),
                   textAlign: TextAlign.center,
                   style: TextStyle(height: 3, fontSize: 20),
                 ),

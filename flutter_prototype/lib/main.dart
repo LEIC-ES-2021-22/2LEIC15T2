@@ -23,6 +23,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List facilityNames = getFacilitiesList();
+    List facilityCapacities = getCapacitiesList();
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -38,7 +39,7 @@ class HomeView extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
-                        FacilityView(facility: facilityNames[index])));
+                        FacilityView(facility: facilityNames[index], capacity: facilityCapacities[index],)));
               },
             ),
           );
