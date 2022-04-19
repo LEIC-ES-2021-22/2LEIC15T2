@@ -7,7 +7,11 @@ To structure our app we used the following diagram:
 
     
 
+<<<<<<< HEAD
 ![LogicalArchitecture](/images/LogicalArchitecture.png)
+=======
+![LogicalArchitecture](/images/LogicalArchitecture2.png)
+>>>>>>> branch
 
 
 * We placed the authentication information inside a component, which keeps user data, such as login, register and logout. 
@@ -24,6 +28,7 @@ To structure our app we used the following diagram:
 
 To develop our app, we used the Flutter technology.
 For the API's, we are using Google Maps API for GPS information.
+<<<<<<< HEAD
 
 ![Physical Archi drawio](/images/PhysicalArchi.drawio.png)
 
@@ -31,8 +36,17 @@ For the API's, we are using Google Maps API for GPS information.
 * Our app will be used in the users smartphone (FEUP Community Phone), from there it will interact with the FEUPQ Server
 * The FEUPQ UI will be developed in flutter and also interacts with the Logic Services such as Dart.
 * We'll still have the external services, which were briefly described on the logical architecture.
+=======
+>>>>>>> branch
 
+![Physical Archi drawio](/images/PhysicalArchi.drawio.png)
 
+<<<<<<< HEAD
+=======
+* Our app will be used in the users smartphone (FEUP Community Phone), from there it will interact with the FEUPQ Server
+* The FEUPQ UI will be developed in flutter and also interacts with the Logic Services such as Dart.
+* We'll still have the external services, which were briefly described on the logical architecture.
+>>>>>>> branch
 
 ### Vertical prototype
 
