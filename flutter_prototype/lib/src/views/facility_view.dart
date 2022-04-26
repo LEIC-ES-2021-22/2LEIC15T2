@@ -92,7 +92,7 @@ class FacilityView extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ChatDetailPage()),
+                MaterialPageRoute(builder: (context) => const ChatDetailPage()),
               );
             },
           ),

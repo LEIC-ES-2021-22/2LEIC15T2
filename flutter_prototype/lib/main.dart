@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FEUPQ',
       theme: ThemeData(primarySwatch: Colors.deepOrange),
-      home: LoginView(),
+      home: const HomeView(),
     );
   }
 }
@@ -70,6 +70,8 @@ class HomeView extends StatelessWidget {
 }
 
 class LoginView extends StatefulWidget {
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   LoginViewState createState() => LoginViewState();
 }
