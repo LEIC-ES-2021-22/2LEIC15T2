@@ -20,15 +20,15 @@ class MyApp extends StatelessWidget {
 
 class HomeView extends StatelessWidget {
   final String? authToken;
-  const HomeView({Key? key, required this.authToken}) : super(key: key);
+  const HomeView({Key? key, this.authToken}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     List facility = getFacilitiesList();
-    var nearestFacility = getNearestFacility();
+    // var nearestFacility = getNearestFacility();
 
-    facility.remove(nearestFacility);
-    facility.insert(0, nearestFacility);
+    // facility.remove(nearestFacility);
+    // facility.insert(0, nearestFacility);
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -52,18 +52,6 @@ class HomeView extends StatelessWidget {
           },
           shrinkWrap: true,
         ),
-        ElevatedButton(
-          child: const Text(
-            'Log Out',
-            textAlign: TextAlign.center,
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginView()),
-            );
-          },
-        )
       ]),
     );
   }
