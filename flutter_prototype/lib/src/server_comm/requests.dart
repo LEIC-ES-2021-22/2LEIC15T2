@@ -26,9 +26,13 @@ List getCapacity(Facility facility) {
 }
 
 String getQueueState(Facility facility) {
-  var rng = Random();
-  List possibleStates = ["Mau", "Mais ou Menos", "Bom"];
-  return possibleStates[rng.nextInt(3)];
+  //var rng = Random();
+  //List possibleStates = ["Mau", "Mais ou Menos", "Bom"];
+  return facility.state;
+}
+
+void setQueueState(Facility facility,String state){
+  facility.state = state;
 }
 
 Facility getNearestFacility() {

@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_code/main.dart';
 import 'package:flutter_code/src/objects/facility.dart';
+import 'package:flutter_code/src/server_comm/requests.dart';
+import 'package:flutter_code/src/views/facility_view.dart';
+
+int indexFinal = 5;
+
+Widget buildHeader({
+  required Widget child,
+  required String title,
+}) =>
+    Column(
+      children: [
+        Text(
+          title,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        child,
+      ],
+    );
 
 class MyForm extends StatelessWidget {
   final Facility facility;
@@ -14,64 +33,84 @@ class MyForm extends StatelessWidget {
           child: Text('FEUPQ'),
         ),
       ),
-      body: Column(
+      body: Center(
+        child:
+         Column(
         children: [
-          Text('\n ${facility.name} Estado'),
-          const _TaskList(),
+          buildHeader(
+            title: '\n ${facility.name} Estado',
+            child: ToggleButtons2(),
+          ),
           ElevatedButton(
             child: const Text('Submeter'),
             onPressed: () {
-              Navigator.push(
+              switch(indexFinal){
+                case 0:
+                  setQueueState(facility,"Bom");
+                  break;
+                case 1:
+                  setQueueState(facility,"Mais ou menos");
+                  break;
+                case 2:
+                  setQueueState(facility,"Mau");
+                  break;
+                default:
+                  break;
+              }
+              Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const HomeView(authToken: "token")),
+                  builder: (BuildContext context) => HomeView(),
+                ),
+                    (route) => false,
               );
             },
-          )
+          ),
         ],
+      ),
       ),
     );
   }
 }
 
-// Underscore before class means its private
-class _TaskList extends StatelessWidget {
-  const _TaskList({Key? key}) : super(key: key);
 
+class ToggleButtons2 extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        TaskItem(label: 'Bom'),
-        TaskItem(label: 'Mais ou Menos'),
-        TaskItem(label: 'Mau'),
-      ],
-    );
-  }
+  _ToggleButtons2State createState() => _ToggleButtons2State();
 }
 
-class TaskItem extends StatefulWidget {
-  final String label;
-
-  const TaskItem({Key? key, required this.label}) : super(key: key);
+class _ToggleButtons2State extends State<ToggleButtons2> {
+  List<bool> isSelected = [false, false, false];
 
   @override
-  _TaskItemState createState() => _TaskItemState();
-}
+  Widget build(BuildContext context) => ToggleButtons(
+    isSelected: isSelected,
+    color: Colors.black,
+    fillColor: Colors.blueGrey,
+    selectedColor: Colors.black,
+    direction:Axis.vertical,
 
-class _TaskItemState extends State<TaskItem> {
-  bool? _value = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          onChanged: (newValue) => setState(() => _value = newValue),
-          value: _value,
-        ),
-        Text(widget.label),
-      ],
-    );
-  }
+    children: <Widget>[
+      Text('Bom'),
+      Text('Mais ou menos'),
+      Text('Mau'),
+    ],
+    onPressed: (int newIndex) {
+      setState(() {
+        for (int index = 0; index < isSelected.length; index++) {
+          if (index == newIndex) {
+            isSelected[index] = !isSelected[index];
+            if(isSelected[index] == true){
+              indexFinal = index;
+            }
+            else{
+              indexFinal = 5;
+            }
+          } else {
+            isSelected[index] = false;
+          }
+        }
+      });
+    },
+  );
 }
