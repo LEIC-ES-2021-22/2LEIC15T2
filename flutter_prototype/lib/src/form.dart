@@ -39,7 +39,7 @@ class MyForm extends StatelessWidget {
         children: [
           buildHeader(
             title: '\n ${facility.name} Estado',
-            child: ToggleButtons2(),
+            child: _ToggleButtons(),
           ),
          ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -81,12 +81,12 @@ class MyForm extends StatelessWidget {
 }
 
 
-class ToggleButtons2 extends StatefulWidget {
+class _ToggleButtons extends StatefulWidget {
   @override
-  _ToggleButtons2State createState() => _ToggleButtons2State();
+  _ToggleButtonsState createState() => _ToggleButtonsState();
 }
 
-class _ToggleButtons2State extends State<ToggleButtons2> {
+class _ToggleButtonsState extends State<_ToggleButtons> {
   List<bool> isSelected = [false, false, false];
 
   @override
