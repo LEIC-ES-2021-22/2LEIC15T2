@@ -41,7 +41,13 @@ class MyForm extends StatelessWidget {
             title: '\n ${facility.name} Estado',
             child: ToggleButtons2(),
           ),
-          ElevatedButton(
+         ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32.0)),
+              minimumSize: Size(100, 40), //////// HERE
+            ),
             child: const Text('Submeter'),
             onPressed: () {
               switch(indexFinal){
@@ -65,6 +71,7 @@ class MyForm extends StatelessWidget {
                     (route) => false,
               );
             },
+
           ),
         ],
       ),
@@ -89,7 +96,6 @@ class _ToggleButtons2State extends State<ToggleButtons2> {
     fillColor: Colors.blueGrey,
     selectedColor: Colors.black,
     direction:Axis.vertical,
-
     children: <Widget>[
       Text('Bom'),
       Text('Mais ou menos'),

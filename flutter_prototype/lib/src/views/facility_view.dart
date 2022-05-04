@@ -27,10 +27,13 @@ class FacilityView extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            child: const Text(
-              'Reportar Estado',
-              textAlign: TextAlign.center,
+            style: ElevatedButton.styleFrom(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32.0)),
+              minimumSize: Size(100, 40), //////// HERE
             ),
+            child: const Text('Reportar Estado'),
             onPressed: () {
               Navigator.push(
                 context,
