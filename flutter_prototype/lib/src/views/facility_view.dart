@@ -6,7 +6,7 @@ import 'package:flutter_code/src/server_comm/requests.dart';
 class FacilityView extends StatelessWidget {
   final Facility facility;
   const FacilityView({Key? key, required this.facility}) : super(key: key);
-
+  //teste
   @override
   Widget build(BuildContext context) {
     // List capacity = getCapacity(facility);
