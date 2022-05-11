@@ -6,10 +6,10 @@ import 'package:flutter_code/src/server_comm/requests.dart';
 class FacilityView extends StatelessWidget {
   final Facility facility;
   const FacilityView({Key? key, required this.facility}) : super(key: key);
-  //teste
+
   @override
   Widget build(BuildContext context) {
-    // List capacity = getCapacity(facility);
+    List capacity = getCapacity(facility);
     return Scaffold(
         appBar: AppBar(
           title: Center(
@@ -21,7 +21,17 @@ class FacilityView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              "Estado da fila : " + getQueueState(facility),
+              'Max Capacity: ' +
+                  capacity[0] +
+                  '\n' +
+                  'Available spots: ' +
+                  capacity[1] +
+                  '\n' +
+                  'Occupied spots: ' +
+                  capacity[2] +
+                  '\n' +
+                  "Estado da fila : " +
+                  getQueueState(facility),
               textAlign: TextAlign.center,
               style: const TextStyle(height: 3, fontSize: 20),
             ),

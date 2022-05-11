@@ -8,23 +8,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_code/main.dart';
+import 'package:flutter_code/src/objects/facility.dart';
+import 'package:flutter_code/src/server_comm/requests.dart';
+import 'package:flutter_code/src/form.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Tests Facility creation', (WidgetTester tester) async {
+    Facility fac1 = new Facility(1, "Cantina");
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(fac1.id, 1);
+    expect(fac1.name, "Cantina");
+    expect(fac1.state, "Bom");
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Tests facility getter and setter', (WidgetTester tester) async {
+    Facility fac1 = new Facility(1, "Cantina");
+    expect(getQueueState(fac1), "Bom");
+    setQueueState(fac1, "Mau");
+    expect(getQueueState(fac1), "Mau");
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Test Report state ', (WidgetTester tester) async {
+    Facility fac1 = Facility(1, "Cantina");
+
+    await tester.pumpWidget(MyForm(facility: fac1));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    /*ElevatedButton button =
+        find.widgetWithText(ElevatedButton, 'Mau').evaluate();
+    button.onPressed();*/
+    //expect(find.text('Bom'), findsOneWidget);
+    //expect(find.text('Mais ou menos'), findsOneWidget);
+    //expect(find.text('Mau'), findsOneWidget);
+    //expect(find.text('Submeter'), findsOneWidget);
+    expect(find.byType(ElevatedButton), findsOneWidget);
   });
 }
