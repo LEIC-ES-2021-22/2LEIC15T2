@@ -5,14 +5,18 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_code/main.dart';
+import 'package:flutter_code/src/views/facility_view.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_code/src/objects/facility.dart';
 import 'package:flutter_code/src/server_comm/requests.dart';
 import 'package:flutter_code/src/form.dart';
 
-void main() {
+Future<void> main() async {
   testWidgets('Tests Facility creation', (WidgetTester tester) async {
     Facility fac1 = new Facility(1, "Cantina");
 
@@ -28,7 +32,22 @@ void main() {
     expect(getQueueState(fac1), "Mau");
   });
 
-  testWidgets('Test Report state ', (WidgetTester tester) async {
+  testWidgets('Tests Initial Page', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    expect(find.text('Parque 1 (Estacionamento) 🚗'), findsOneWidget);
+    expect(find.text('Parque 2 (Estacionamento) 🚗'), findsOneWidget);
+    expect(find.text('Parque 3 (Estacionamento) 🚗'), findsOneWidget);
+    expect(find.text('Cantina 🍽️'), findsOneWidget);
+    expect(find.text('Biblioteca 📚'), findsOneWidget);
+    expect(find.text('Mau'), findsNothing); //Não é suposto ter este
+  });
+  testWidgets('Tests Go to a queue', (WidgetTester tester) async {
+    var fac2 = new Facility(3, "Cantina 🍽️");
+
+    await tester.pumpWidget(FacilityView(facility: Facility(3, 'Cantina')));
+    expect(1, 1);
+  });
+  /*  testWidgets('Test Report state ', (WidgetTester tester) async {
     Facility fac1 = Facility(1, "Cantina");
 
     await tester.pumpWidget(MyForm(facility: fac1));
@@ -41,5 +60,5 @@ void main() {
     //expect(find.text('Mau'), findsOneWidget);
     //expect(find.text('Submeter'), findsOneWidget);
     expect(find.byType(ElevatedButton), findsOneWidget);
-  });
+  });*/
 }
