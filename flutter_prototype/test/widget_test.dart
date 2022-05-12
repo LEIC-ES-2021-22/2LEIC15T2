@@ -187,6 +187,78 @@ Future<void> main() async {
 
   });
 
+  testWidgets('Test Change Queue state when no changed Queue State', (WidgetTester tester) async {
+
+    //ir ao parque 1
+    await tester.pumpWidget(const MyApp());
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //reportar estado
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //voltar ao parque1
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+  });
+
+  testWidgets('Test Change Queue state when no changed Queue State after changing once', (WidgetTester tester) async {
+
+    //ir ao parque 1
+    await tester.pumpWidget(const MyApp());
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //reportar estado
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.text('Mais ou menos'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //voltar ao parque1
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+  });
+
 
 
 }
