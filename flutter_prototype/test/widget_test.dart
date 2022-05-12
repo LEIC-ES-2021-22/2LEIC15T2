@@ -54,21 +54,139 @@ Future<void> main() async {
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
   });
+
   testWidgets('Test Enter Report State Page', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
     await tester.tap(find.byType(Card).first);
 
-    /*Facility fac1 = Facility(1, "Cantina");
-
-    await tester.pumpWidget(MyForm(facility: fac1));
     await tester.pumpAndSettle(Duration(seconds: 2));
-    /*ElevatedButton button =
-        find.widgetWithText(ElevatedButton, 'Mau').evaluate();
-    button.onPressed();*/
-    //expect(find.text('Bom'), findsOneWidget);
-    //expect(find.text('Mais ou menos'), findsOneWidget);
-    //expect(find.text('Mau'), findsOneWidget);
-    //expect(find.text('Submeter'), findsOneWidget);
-    expect(find.byType(ElevatedButton), findsOneWidget);*/
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+    //reportar estado
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(find.text('Bom'), findsOneWidget);
+    expect(find.text('Mau'), findsOneWidget);
+    expect(find.text('Mais ou menos'), findsOneWidget);
+    expect(find.text('Submeter'), findsOneWidget);
+
   });
+
+  testWidgets('Test Change Queue state to Mau', (WidgetTester tester) async {
+
+    //ir ao parque 1
+    await tester.pumpWidget(const MyApp());
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //reportar estado
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.text('Mau'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //voltar ao parque1
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mau'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+
+  });
+
+  testWidgets('Test Change Queue state to Bom', (WidgetTester tester) async {
+
+    //ir ao parque 1
+    await tester.pumpWidget(const MyApp());
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //reportar estado
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.text('Bom'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //voltar ao parque1
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+
+  });
+
+  testWidgets('Test Change Queue state to Mais ou menos then change to Bom', (WidgetTester tester) async {
+
+    //ir ao parque 1
+    await tester.pumpWidget(const MyApp());
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //reportar estado
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.text('Mais ou menos'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //voltar ao parque1
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+
+    //reportar estado
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    await tester.tap(find.text('Bom'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    //voltar ao parque1
+    await tester.tap(find.byType(Card).first);
+
+    await tester.pumpAndSettle(Duration(seconds: 2));
+
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
+
+  });
+
+
+
 }
