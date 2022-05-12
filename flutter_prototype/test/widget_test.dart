@@ -6,7 +6,8 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'dart:math';
-
+import 'dart:async';
+import 'package:gherkin/gherkin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_code/main.dart';
 import 'package:flutter_code/src/views/facility_view.dart';
@@ -41,14 +42,23 @@ Future<void> main() async {
     expect(find.text('Biblioteca 📚'), findsOneWidget);
     expect(find.text('Mau'), findsNothing); //Não é suposto ter este
   });
-  testWidgets('Tests Go to a queue', (WidgetTester tester) async {
-    var fac2 = new Facility(3, "Cantina 🍽️");
+  testWidgets('Tests Go to Parque 1 (Estacionamento)',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    await tester.tap(find.byType(Card).first);
 
-    await tester.pumpWidget(FacilityView(facility: Facility(3, 'Cantina')));
-    expect(1, 1);
+    await tester.pumpAndSettle(Duration(seconds: 2));
+    expect(
+        find.text(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
+        findsOneWidget);
+    expect(find.text('Reportar Estado'), findsOneWidget);
   });
-  /*  testWidgets('Test Report state ', (WidgetTester tester) async {
-    Facility fac1 = Facility(1, "Cantina");
+  testWidgets('Test Enter Report State Page', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+    await tester.tap(find.byType(Card).first);
+
+    /*Facility fac1 = Facility(1, "Cantina");
 
     await tester.pumpWidget(MyForm(facility: fac1));
     await tester.pumpAndSettle(Duration(seconds: 2));
@@ -59,6 +69,6 @@ Future<void> main() async {
     //expect(find.text('Mais ou menos'), findsOneWidget);
     //expect(find.text('Mau'), findsOneWidget);
     //expect(find.text('Submeter'), findsOneWidget);
-    expect(find.byType(ElevatedButton), findsOneWidget);
-  });*/
+    expect(find.byType(ElevatedButton), findsOneWidget);*/
+  });
 }
