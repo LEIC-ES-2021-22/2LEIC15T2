@@ -11,6 +11,20 @@ Below, you can find information, plans, and retrospective about our project on t
 * Iteration planning and retrospectives: 
   * Plans: screenshots of Github Projects board at begin and end of each iteration;
   * Retrospectives: 
-     * Did well: 
-     * Did Differently: 
-     * Puzzles: 
+     * Did well: </br>
+           Work items planning</br>
+           Good Communication</br>
+           Work consistency</br>
+           Fast development in the user GUI app </br>
+           
+     * Do Differently:</br>
+           Bad assigning to user stories (1 person can´t be in 2+ user stories at the same time)</br>
+           Assign 2 people to focus on tests implementation </br>
+        
+         
+     * Puzzles: </br>
+           Task assigning to iteration backlog </br>
+           Choosing the right tags to each work item</br>
+           Flutter programming (we are still newbies!) </br>
+           Gherkin Tests</br>
+         
