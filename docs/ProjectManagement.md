@@ -9,7 +9,12 @@ Below, you can find information, plans, and retrospective about our project on t
 * Backlog management: Product backlog and Iteration backlog in a [Github Projects board](https://github.com/LEIC-ES-2021-22/templates/projects/1);
 * Release management: [Release 1.1]
 * Iteration planning and retrospectives: 
-  * Plans: screenshots of Github Projects board at begin and end of each iteration;
+  * Final Board
+  * Example:
+ <p align="center" justify="center">
+  <img src="../images/iteration1.PNG"/>
+</p>
+ 
   * Retrospectives: 
      * Did well: </br>
            Work items planning</br>
