@@ -2,30 +2,29 @@ import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 import 'package:flutter_driver/flutter_driver.dart';
 import '../pages/home_page.dart';
-/*
-class InitialStateOfApp extends WhenWithWorld<FlutterWorld> {
-  InitialStateOfApp()
+
+class EnterQueue extends ThenWithWorld<FlutterWorld> {
+  EnterQueue()
       : super(StepDefinitionConfiguration()..timeout = Duration(seconds: 10));
 
   @override
   Future<void> executeStep() async {
     //Instantiate homepage with world.driver as parameter for flutter driver object
-    
-    final locator=find.byValueKey('Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom');
-    FlutterDriverUtils.isPresent(world.driver,locator);
-  //expectMatch(await homePage.getCounterValue(), value);
+
+    //expectMatch(await homePage.getCounterValue(), value);
   }
 
   @override
-  RegExp get pattern => RegExp(r"I test the initial state of the app");
+  RegExp get pattern => RegExp(r"I click the Parque Estacionamento 1 button");
 }
-*/
-StepDefinitionGeneric MainPage() {
-  return given<FlutterWorld>(
-    'I test the initial state of the app ',
+
+StepDefinitionGeneric EnterQueuee() {
+  return when<FlutterWorld>(
+    'I click the Parque Estacionamento 1 button',
     (context) async {
       final locator = find.byValueKey('Parque 1 (Estacionamento) 🚗');
       FlutterDriverUtils.isPresent(context.world.driver, locator);
+      FlutterDriverUtils.tap(context.world.driver, locator);
     },
   );
 }
