@@ -7,7 +7,7 @@ Below, you can find information, plans, and retrospective about our project on t
 
 ## Release 1.1
 * Backlog management: Product backlog and Iteration backlog in a [Github Projects board](https://github.com/LEIC-ES-2021-22/templates/projects/1);
-* Release management: [Release 1.1]
+* Release management: [Release 1.1](https://github.com/LEIC-ES-2021-22/2LEIC15T2/releases/tag/v1.1)
 * Iteration planning and retrospectives: 
   * Final Board
   * Example:
