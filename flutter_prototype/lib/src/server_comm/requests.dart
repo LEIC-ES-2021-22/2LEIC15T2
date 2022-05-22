@@ -1,12 +1,11 @@
 import 'package:flutter_code/src/objects/facility.dart';
-import 'dart:math';
 
 var _facilities = [
-  Facility(0, 'Parque 1 (Estacionamento) 🚗'),
-  Facility(1, 'Parque 2 (Estacionamento) 🚗'),
-  Facility(2, 'Parque 3 (Estacionamento) 🚗'),
+  Facility(0, 'Parque 1 (Estacionamento) 🚗', hasCap: true, hasQueue: true),
+  Facility(1, 'Parque 2 (Estacionamento) 🚗', hasCap: true, hasQueue: true),
+  Facility(2, 'Parque 3 (Estacionamento) 🚗', hasCap: true, hasQueue: true),
   Facility(3, 'Cantina 🍽️'),
-  Facility(4, 'Biblioteca 📚'),
+  Facility(4, 'Biblioteca 📚', hasCap: true, hasQueue: false),
 ];
 
 // NOTA: Falta adicionar esta opção nos request do Logical Arquitecture
@@ -31,7 +30,7 @@ String getQueueState(Facility facility) {
   return facility.state;
 }
 
-void setQueueState(Facility facility,String state){
+void setQueueState(Facility facility, String state) {
   facility.state = state;
 }
 

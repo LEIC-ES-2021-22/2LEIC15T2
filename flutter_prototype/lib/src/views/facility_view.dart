@@ -9,34 +9,9 @@ class FacilityView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List capacity = getCapacity(facility);
-    return Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text(facility.name),
-          ),
-        ),
-        body: Center(
-            child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Max Capacity: ' +
-                  capacity[0] +
-                  '\n' +
-                  'Available spots: ' +
-                  capacity[1] +
-                  '\n' +
-                  'Occupied spots: ' +
-                  capacity[2] +
-                  '\n' +
-                  "Estado da fila : " +
-                  getQueueState(facility),
-              textAlign: TextAlign.center,
-              style: const TextStyle(height: 3, fontSize: 20),
-            ),
-          ),
-          ElevatedButton(
+    // Report button is not needed if capacity API is not supported
+    var button = facility.hasQueue
+        ? ElevatedButton(
             style: ElevatedButton.styleFrom(
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -51,7 +26,47 @@ class FacilityView extends StatelessWidget {
                     builder: (context) => MyForm(facility: facility)),
               );
             },
+          )
+        : null;
+    return Scaffold(
+        appBar: AppBar(
+          title: Center(
+            child: Text(facility.name),
+          ),
+        ),
+        body: Center(
+            child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              getFacilityStatus(facility),
+              textAlign: TextAlign.center,
+              style: const TextStyle(height: 3, fontSize: 20),
+            ),
+          ),
+          Container(
+            child: button,
           ),
         ])));
   }
+}
+
+String getFacilityStatus(Facility fac) {
+  var capacity = getCapacity(fac);
+  String display = "";
+  if (fac.hasCap) {
+    display += 'Max Capacity: ' +
+        capacity[0] +
+        '\n' +
+        'Available spots: ' +
+        capacity[1] +
+        '\n' +
+        'Occupied spots: ' +
+        capacity[2] +
+        '\n';
+  }
+  if (fac.hasQueue) {
+    display += "Estado da fila : " + getQueueState(fac);
+  }
+  return display;
 }
