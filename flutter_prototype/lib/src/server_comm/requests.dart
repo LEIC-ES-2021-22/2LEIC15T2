@@ -10,7 +10,7 @@ var _facilities = [
 ];
 
 // NOTA: Falta adicionar esta opção nos request do Logical Arquitecture
-List getFacilitiesList() {
+List<Facility> getFacilitiesList() {
   return _facilities;
 }
 
