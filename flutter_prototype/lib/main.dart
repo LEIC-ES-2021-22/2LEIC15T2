@@ -52,6 +52,7 @@ class _HomeViewState extends State<HomeView> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextField(
+            key: const ValueKey("searchBar"),
             onChanged: (text) {
               setState(() {
                 if (text == "") {
