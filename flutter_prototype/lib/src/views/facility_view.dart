@@ -71,14 +71,14 @@ class _FacilityView extends State<FacilityView> {
     List capacity = getCapacity(widget.facility);
     double x = getLatitude(widget.facility);
     double y = getLongitude(widget.facility);
+
     double? latitude = _position?.latitude;
     double? longitude = _position?.longitude;
-    num r = 6371000;
+
     //Future<Position> position =  _determinePosition();
     double distance = 0;
 
-    distance = ((latitude! -x) - (longitude!-y))/360;
-    distance *= (2 * pi * r);
+    distance = Geolocator.distanceBetween(x,y,latitude!,longitude!);
 
     return Scaffold(
         appBar: AppBar(
@@ -105,7 +105,7 @@ class _FacilityView extends State<FacilityView> {
                       '\n' +
                       "Distância: " +
                       '\n' +
-                      distance.toInt().toString() +
+                      distance.toInt().toString() + " m" +
                       '\n',
                   textAlign: TextAlign.center,
                   style: const TextStyle(height: 3, fontSize: 20),
