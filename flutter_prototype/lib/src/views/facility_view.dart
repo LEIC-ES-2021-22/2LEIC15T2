@@ -4,6 +4,8 @@ import 'package:flutter_code/src/form.dart';
 import 'package:flutter_code/src/server_comm/requests.dart';
 import 'package:location/location.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter/material.dart';
+import 'dart:math';
 
 class FacilityView extends StatelessWidget {
   final Facility facility;
@@ -12,10 +14,23 @@ class FacilityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List capacity = getCapacity(facility);
-    List<double> x = getLatitude(facility);
-    List<double> y = getLongitude(facility);
-    Future<Position> position =  _determinePosition();
-    
+    double x = getLatitude(facility);
+    double y = getLongitude(facility);
+    //Future<Position> position =  _determinePosition();
+    double latitude = 0;
+    double longitude = 0;
+    double distance = 0;
+
+    _updatePosition(latitude,longitude);
+
+    /*print(latitude);
+    print(longitude);
+    print(x);
+    print(y);
+    */
+
+    distance = sqrt((latitude-x)*(latitude-x) + (longitude-y)*(longitude-y));
+
     return Scaffold(
         appBar: AppBar(
           title: Center(
@@ -40,9 +55,8 @@ class FacilityView extends StatelessWidget {
                   getQueueState(facility) +
                   '\n' +
                   "Distância: " +
-                  x.toString() +
                   '\n' +
-                  position.toString() +
+                  distance.toInt().toString() +
                   '\n',
               textAlign: TextAlign.center,
               style: const TextStyle(height: 3, fontSize: 20),
@@ -103,4 +117,10 @@ Future<Position> _determinePosition() async {
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
   return await Geolocator.getCurrentPosition();
+}
+
+Future<void> _updatePosition(double latitude,double longitude) async{
+  Position pos = await _determinePosition();
+  latitude = pos.latitude;
+  longitude = pos.longitude;
 }

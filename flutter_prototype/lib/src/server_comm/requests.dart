@@ -27,24 +27,24 @@ List getCapacity(Facility facility) {
   return cap[facility.id];
 }
 
-List<double> getLatitude(Facility facility){
+double getLatitude(Facility facility){
   var coordx = [
-    [41.17836130629347],
-    [41.17836130629347],
-    [41.17730066319587],
-    [41.17632143131],
-    [41.177469103140986],
+    41.17836130629347,
+    41.17836130629347,
+    41.17730066319587,
+    41.17632143131,
+    41.177469103140986,
   ];
   return coordx[facility.id];
 }
 
-List<double> getLongitude(Facility facility){
+double getLongitude(Facility facility){
   var coordy = [
-    [-8.593823282717201],
-    [-8.593823282717201],
-    [-8.594251870970238],
-    [-8.595312844340482],
-    [-8.59463975254973],
+    -8.593823282717201,
+    -8.593823282717201,
+    -8.594251870970238,
+    -8.595312844340482,
+    -8.59463975254973,
   ];
   return coordy[facility.id];
 }
