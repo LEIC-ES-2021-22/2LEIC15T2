@@ -34,6 +34,7 @@ class _FacilityView extends State<FacilityView> {
 
   @override
   Widget build(BuildContext context) {
+    // Report button is not needed if capacity API is not supported
     _updatePosition();
 
     List capacity = getCapacity(widget.facility);
@@ -49,40 +50,8 @@ class _FacilityView extends State<FacilityView> {
     if (latitude != null && longitude != null) {
       distance = Geolocator.distanceBetween(x, y, latitude, longitude);
     }
-
-    return Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text(widget.facility.name),
-          ),
-        ),
-        body: Center(
-            child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Max Capacity: ' +
-                  capacity[0] +
-                  '\n' +
-                  'Available spots: ' +
-                  capacity[1] +
-                  '\n' +
-                  'Occupied spots: ' +
-                  capacity[2] +
-                  '\n' +
-                  "Estado da fila : " +
-                  getQueueState(widget.facility) +
-                  '\n' +
-                  "Distância: " +
-                  '\n' +
-                  distance.toInt().toString() +
-                  " m" +
-                  '\n',
-              textAlign: TextAlign.center,
-              style: const TextStyle(height: 3, fontSize: 20),
-            ),
-          ),
-          ElevatedButton(
+    var button = widget.facility.hasQueue
+        ? ElevatedButton(
             style: ElevatedButton.styleFrom(
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -97,6 +66,26 @@ class _FacilityView extends State<FacilityView> {
                     builder: (context) => MyForm(facility: widget.facility)),
               );
             },
+          )
+        : null;
+    return Scaffold(
+        appBar: AppBar(
+          title: Center(
+            child: Text(widget.facility.name),
+          ),
+        ),
+        body: Center(
+            child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              getFacilityStatus(widget.facility,distance),
+              textAlign: TextAlign.center,
+              style: const TextStyle(height: 3, fontSize: 20),
+            ),
+          ),
+          Container(
+            child: button,
           ),
           /*FloatingActionButton(
                 onPressed: () {
@@ -108,4 +97,26 @@ class _FacilityView extends State<FacilityView> {
               ),*/
         ])));
   }
+}
+
+String getFacilityStatus(Facility fac, double distance) {
+  var capacity = getCapacity(fac);
+  String display = "";
+  if (fac.hasCap) {
+    display += 'Max Capacity: ' +
+        capacity[0] +
+        '\n' +
+        'Available spots: ' +
+        capacity[1] +
+        '\n' +
+        'Occupied spots: ' +
+        capacity[2] +
+        '\n';
+  }
+  if (fac.hasQueue) {
+    display += "Estado da fila : " + getQueueState(fac) + '\n';
+  }
+  display += "Distância: " + distance.toInt().toString() + ' m\n';
+
+  return display;
 }
