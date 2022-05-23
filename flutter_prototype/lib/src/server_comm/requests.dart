@@ -27,7 +27,7 @@ List getCapacity(Facility facility) {
   return cap[facility.id];
 }
 
-double getLatitude(Facility facility){
+double getLatitude(Facility facility) {
   var coordx = [
     41.17836130629347,
     41.17836130629347,
@@ -38,7 +38,7 @@ double getLatitude(Facility facility){
   return coordx[facility.id];
 }
 
-double getLongitude(Facility facility){
+double getLongitude(Facility facility) {
   var coordy = [
     -8.593823282717201,
     -8.593823282717201,
@@ -55,12 +55,62 @@ String getQueueState(Facility facility) {
   return facility.state;
 }
 
-void setQueueState(Facility facility,String state){
+void setQueueState(Facility facility, String state) {
   facility.state = state;
 }
 
-Facility getNearestFacility() {
-  return _facilities[3];
+Future<Facility> getNearestFacility(List<Facility> facilities) async {
+  double dist = double.maxFinite;
+  var closestFacility = facilities[0];
+  for (var facility in facilities) {
+    Position pos = await determinePosition();
+
+    var newDist = Geolocator.distanceBetween(getLatitude(facility),
+        getLongitude(facility), pos.latitude, pos.longitude);
+    if (newDist < dist) {
+      closestFacility = facility;
+      dist = newDist;
+    }
+  }
+  return closestFacility;
+}
+
+// Returns a users position
+Future<Position> determinePosition() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  // Test if location services are enabled.
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    // Location services are not enabled don't continue
+    // accessing the position and request users of the
+    // App to enable the location services.
+    return Future.error('Location services are disabled.');
+  }
+
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      // Permissions are denied, next time you could try
+      // requesting permissions again (this is also where
+      // Android's shouldShowRequestPermissionRationale
+      // returned true. According to Android guidelines
+      // your App should show an explanatory UI now.
+      return Future.error('Location permissions are denied');
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    // Permissions are denied forever, handle appropriately.
+    return Future.error(
+        'Location permissions are permanently denied, we cannot request permissions.');
+  }
+
+  // When we reach here, permissions are granted and we can
+  // continue accessing the position of the device.
+  return await Geolocator.getCurrentPosition();
 }
 
 List getFacilityPreviousQueues(Facility facility, DateTime day) {
