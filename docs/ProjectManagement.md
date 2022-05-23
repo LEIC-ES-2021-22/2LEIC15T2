@@ -49,11 +49,18 @@ Below, you can find information, plans, and retrospective about our project on t
  * Retrospectives: 
  
      * Did well: </br>
-          
+           Gherkin Tests</br>
+           Good communication among the team maintained</br> 
+           Dart programming is becoming more intuitive</br> 
+           
            
      * Do Differently:</br>
-          
+          Unit testing - Some tests could be implemented in easier ways </br> 
         
          
      * Puzzles: </br>
+           Dificulty of user stories - some where underestimated</br>
+           Integration of tests with the UNI app</br>
+           
+           
            
