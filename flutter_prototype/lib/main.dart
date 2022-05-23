@@ -43,11 +43,24 @@ class HomeView extends StatelessWidget {
             future: getNearestFacility(facility),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text("Fila mais proxima:" + snapshot.data!.name);
+                return Column(children: [
+                  Text("Fila mais perto",style: const TextStyle(height: 3, fontSize: 20)),
+                  Card(
+                    child: ListTile(
+                        title: Text(snapshot.data!.name),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FacilityView(
+                                facility: facility[snapshot.data!.id],
+                              )));
+                        }),
+                  )
+                ]);
               } else {
-                return Text("Não há fila mais proxima");
+                return Text("Não há fila mais proxima",style: const TextStyle(height: 3, fontSize: 20));
               }
             }),
+        Text("Todas as Filas: ",style: const TextStyle(height: 3, fontSize: 20)),
         ListView.builder(
           itemCount: facility.length,
           itemBuilder: (context, index) {
