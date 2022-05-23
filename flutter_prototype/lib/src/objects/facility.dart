@@ -1,5 +1,3 @@
-import 'package:location/location.dart';
-
 class Facility {
   final int id;
   final String name;
