@@ -41,8 +41,13 @@ Below, you can find information, plans, and retrospective about our project on t
  <p align="center" justify="center">
   <img src="../images/Iteration 2 board.PNG"/>
 </p>
+  * Final Board:
+ <p align="center" justify="center">
+  <img src="../images/Iteration2BoardFinal.PNG"/>
+</p>
 
  * Retrospectives: 
+ 
      * Did well: </br>
           
            
