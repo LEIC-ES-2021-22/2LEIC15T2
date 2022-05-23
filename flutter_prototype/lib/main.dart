@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_code/src/objects/facility.dart';
 import 'package:flutter_code/src/server_comm/authentication.dart';
 import 'package:flutter_code/src/views/facility_view.dart';
 import 'src/server_comm/requests.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,17 +21,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeView extends StatelessWidget {
+// Filter makes it so the Widget is Stateful
+class HomeView extends StatefulWidget {
   final String? authToken;
   const HomeView({Key? key, this.authToken}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    List facility = getFacilitiesList();
-    // var nearestFacility = getNearestFacility();
+  State<HomeView> createState() => _HomeViewState();
+}
 
-    // facility.remove(nearestFacility);
-    // facility.insert(0, nearestFacility);
+class _HomeViewState extends State<HomeView> {
+  final List<Facility> __facility = getFacilitiesList();
+  late List<Facility> facility;
+  @override
+  void initState() {
+    super.initState();
+    facility = __facility;
+  }
+
+  // var nearestFacility = getNearestFacility();
+  // facility.remove(nearestFacility);
+  // facility.insert(0, nearestFacility);
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -36,6 +51,51 @@ class HomeView extends StatelessWidget {
         ),
       ),
       body: Column(children: [
+        FutureBuilder<Facility>(
+            future: getNearestFacility(facility),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(children: [
+                  Text("Fila mais perto:",style: const TextStyle(height: 3, fontSize: 20)),
+                  Card(
+                    child: ListTile(
+                        title: Text(snapshot.data!.name),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FacilityView(
+                                facility: facility[snapshot.data!.id],
+                              )));
+                        }),
+                  )
+                ]);
+              } else {
+                return Text("Não há fila mais proxima",style: const TextStyle(height: 3, fontSize: 20));
+              }
+            }),
+        Text("Todas as Filas: ",style: const TextStyle(height: 3, fontSize: 20)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextField(
+            key: const ValueKey("searchBar"),
+            onChanged: (text) {
+              setState(() {
+                if (text == "") {
+                  facility = __facility;
+                } else {
+                  facility = __facility
+                      .where((facility) => facility.name
+                          .toLowerCase()
+                          .contains(text.toLowerCase()))
+                      .toList();
+                }
+              });
+            },
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Barra de Pesquisa',
+            ),
+          ),
+        ),
         ListView.builder(
           itemCount: facility.length,
           itemBuilder: (context, index) {

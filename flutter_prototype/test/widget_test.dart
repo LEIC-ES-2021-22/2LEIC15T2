@@ -12,9 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_code/main.dart';
 import 'package:flutter_code/src/views/facility_view.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:flutter_code/src/views/facility_view.dart';
 import 'package:flutter_code/src/objects/facility.dart';
 import 'package:flutter_code/src/server_comm/requests.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:flutter_code/src/form.dart';
 
 Future<void> main() async {
@@ -49,7 +51,7 @@ Future<void> main() async {
 
     await tester.pumpAndSettle(Duration(seconds: 2));
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
@@ -62,7 +64,7 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
@@ -100,8 +102,8 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mau'),
+        find.textContaining(
+            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mau\n'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
 
@@ -130,7 +132,7 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
@@ -160,7 +162,7 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
@@ -180,7 +182,7 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
@@ -208,7 +210,7 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
@@ -237,7 +239,7 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
@@ -253,12 +255,20 @@ Future<void> main() async {
     await tester.pumpAndSettle(Duration(seconds: 2));
 
     expect(
-        find.text(
+        find.textContaining(
             'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
         findsOneWidget);
     expect(find.text('Reportar Estado'), findsOneWidget);
   });
 
+  testWidgets('Test Distance', (WidgetTester tester) async {
+    Facility fac1 = new Facility(3, 'Cantina 🍽️');
+    FacilityView widget = FacilityView(facility: fac1);
+    final state = widget.createState();
+   //Future.delayed(const Duration(seconds: 5));
 
+    expect(state.getPosition()?.latitude,null);
+    expect(state.getPosition()?.longitude,null);
+  });
 
 }
