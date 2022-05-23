@@ -56,7 +56,7 @@ class _HomeViewState extends State<HomeView> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Column(children: [
-                  Text("Fila mais perto",style: const TextStyle(height: 3, fontSize: 20)),
+                  Text("Fila mais perto:",style: const TextStyle(height: 3, fontSize: 20)),
                   Card(
                     child: ListTile(
                         title: Text(snapshot.data!.name),
