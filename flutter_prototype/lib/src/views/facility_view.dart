@@ -20,6 +20,7 @@ class _FacilityView extends State<FacilityView> {
   //final Facility facility
   Position? _position;
 
+
   Future<void> _updatePosition() async {
     Position pos = await _determinePosition();
     //List pm = await placemarkFromCoordinates(pos.latitude, pos.longitude);
@@ -68,6 +69,7 @@ class _FacilityView extends State<FacilityView> {
   @override
   Widget build(BuildContext context) {
     _updatePosition();
+
     List capacity = getCapacity(widget.facility);
     double x = getLatitude(widget.facility);
     double y = getLongitude(widget.facility);
@@ -78,7 +80,9 @@ class _FacilityView extends State<FacilityView> {
     //Future<Position> position =  _determinePosition();
     double distance = 0;
 
-    distance = Geolocator.distanceBetween(x,y,latitude!,longitude!);
+    if(latitude != null && longitude != null) {
+      distance = Geolocator.distanceBetween(x, y, latitude, longitude);
+    }
 
     return Scaffold(
         appBar: AppBar(
