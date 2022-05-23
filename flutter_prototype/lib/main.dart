@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_code/src/objects/facility.dart';
 import 'package:flutter_code/src/server_comm/authentication.dart';
 import 'package:flutter_code/src/views/facility_view.dart';
 import 'src/server_comm/requests.dart';
@@ -24,11 +25,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List facility = getFacilitiesList();
-    // var nearestFacility = getNearestFacility();
+    List<Facility> facility = getFacilitiesList();
+    //Facility teste;
+    String nada = "top";
 
     // facility.remove(nearestFacility);
     // facility.insert(0, nearestFacility);
+
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -36,6 +39,15 @@ class HomeView extends StatelessWidget {
         ),
       ),
       body: Column(children: [
+        FutureBuilder<Facility>(
+            future: getNearestFacility(facility),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text("Fila mais proxima:" + snapshot.data!.name);
+              } else {
+                return Text("Não há fila mais proxima");
+              }
+            }),
         ListView.builder(
           itemCount: facility.length,
           itemBuilder: (context, index) {

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:location/location.dart';
 import 'package:geolocator/geolocator.dart';
 
-var _facilities = [
+List<Facility> _facilities = [
   Facility(0, 'Parque 1 (Estacionamento) 🚗'),
   Facility(1, 'Parque 2 (Estacionamento) 🚗'),
   Facility(2, 'Parque 3 (Estacionamento) 🚗'),
@@ -12,7 +12,7 @@ var _facilities = [
 ];
 
 // NOTA: Falta adicionar esta opção nos request do Logical Arquitecture
-List getFacilitiesList() {
+List<Facility> getFacilitiesList() {
   return _facilities;
 }
 
@@ -61,7 +61,7 @@ void setQueueState(Facility facility, String state) {
 
 Future<Facility> getNearestFacility(List<Facility> facilities) async {
   double dist = double.maxFinite;
-  var closestFacility = facilities[0];
+  Facility closestFacility = facilities[0];
   for (var facility in facilities) {
     Position pos = await determinePosition();
 
