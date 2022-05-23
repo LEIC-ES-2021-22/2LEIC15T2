@@ -8,9 +8,13 @@ import 'package:geocoding/geocoding.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+
+
 class FacilityView extends StatefulWidget{
   final Facility facility;
-  const FacilityView({Key? key, required this.facility}) : super(key: key);
+  const FacilityView( {Key? key, required this.facility}) : super(key: key);
+
+
 
   @override
   _FacilityView createState() => _FacilityView();
@@ -19,6 +23,10 @@ class FacilityView extends StatefulWidget{
 class _FacilityView extends State<FacilityView> {
   //final Facility facility
   Position? _position;
+
+  Position? getPosition(){
+    return _position;
+  }
 
 
   Future<void> _updatePosition() async {
