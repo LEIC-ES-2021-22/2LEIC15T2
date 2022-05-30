@@ -65,7 +65,7 @@ class MyForm extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => FacilitiesView(),
+                    builder: (BuildContext context) => FacilityView(facility: facility),
                   ),
                       (route) => false,
                 );
