@@ -107,7 +107,7 @@ class MyAppState extends State<MyApp> {
                         page: ExamsPageView(), settings: settings);
                   case '/' + Constants.navFEUPQ:
                     return PageTransition.makePageTransition(
-                        page: FEUPQPageView(), settings: settings);
+                        page: FeupQ(), settings: settings);
                   case '/' + Constants.navStops:
                     return PageTransition.makePageTransition(
                         page: BusStopNextArrivalsPage(), settings: settings);

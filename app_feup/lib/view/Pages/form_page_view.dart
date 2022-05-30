@@ -3,6 +3,8 @@ import 'package:uni/model/entities/facility.dart';
 import 'package:uni/model/utils/requests_model.dart';
 import 'package:uni/view/Pages/feupq_page_view.dart';
 
+import 'facility_page_view.dart';
+
 int indexFinal = 5;
 
 Widget buildHeader({

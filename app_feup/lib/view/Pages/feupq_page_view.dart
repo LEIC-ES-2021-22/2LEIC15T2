@@ -9,131 +9,135 @@ import 'package:uni/model/entities/facility.dart';
 
 import 'form_page_view.dart';
 
-class FEUPQPageView extends StatelessWidget {
+//void main() => runApp(const MyApp());
+
+class FeupQ extends StatelessWidget {
+  const FeupQ({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FEUPQ',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: const Color.fromRGBO(117,23,30,1)
-        ),
-      ),
-      home: const FacilityView(),
+      theme: ThemeData(primarySwatch: Colors.deepOrange),
+      home: const HomeView(),
     );
   }
 }
 
-class FacilityView extends StatefulWidget {
-  final Facility facility;
-  const FacilityView({Key key, this.facility}) : super(key: key);
+// Filter makes it so the Widget is Stateful
+class HomeView extends StatefulWidget {
+  final String authToken;
+  const HomeView({Key key, this.authToken}) : super(key: key);
 
   @override
-  _FacilityView createState() => _FacilityView();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _FacilityView extends State<FacilityView> {
-  //final Facility facility
-  Position _position;
-
-  Position getPosition() {
-    return _position;
+class _HomeViewState extends State<HomeView> {
+  final List<Facility> __facility = getFacilitiesList();
+   List<Facility> facility;
+  @override
+  void initState() {
+    super.initState();
+    facility = __facility;
   }
 
-  Future<void> _updatePosition() async {
-    Position pos = await determinePosition();
-    //List pm = await placemarkFromCoordinates(pos.latitude, pos.longitude);
-    setState(() {
-      _position = pos;
-    });
+  // var nearestFacility = getNearestFacility();
+  // facility.remove(nearestFacility);
+  // facility.insert(0, nearestFacility);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(
+          child: Text('FEUPQ'),
+        ),
+      ),
+      body: Column(children: [
+        FutureBuilder<Facility>(
+            future: getNearestFacility(facility),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(children: [
+                  Text("Fila mais perto:",style: const TextStyle(height: 3, fontSize: 20)),
+                  Card(
+                    child: ListTile(
+                        title: Text(snapshot.data.name),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FacilityView(
+                                facility: facility[snapshot.data.id],
+                              )));
+                        }),
+                  )
+                ]);
+              } else {
+                return Text("Não há fila mais proxima",style: const TextStyle(height: 3, fontSize: 20));
+              }
+            }),
+        Text("Todas as Filas: ",style: const TextStyle(height: 3, fontSize: 20)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextField(
+            key: const ValueKey("searchBar"),
+            onChanged: (text) {
+              setState(() {
+                if (text == "") {
+                  facility = __facility;
+                } else {
+                  facility = __facility
+                      .where((facility) => facility.name
+                      .toLowerCase()
+                      .contains(text.toLowerCase()))
+                      .toList();
+                }
+              });
+            },
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Barra de Pesquisa',
+            ),
+          ),
+        ),
+        ListView.builder(
+          itemCount: facility.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                  title: Text(facility[index].name),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => FacilityView(
+                          facility: facility[index],
+                        )));
+                  }),
+            );
+          },
+          shrinkWrap: true,
+        ),
+      ]),
+    );
   }
+}
+
+class LoginView extends StatefulWidget {
+  const LoginView({Key key}) : super(key: key);
+
+  @override
+  LoginViewState createState() => LoginViewState();
+}
+
+class LoginViewState extends State<LoginView> {
+  bool visible = true;
 
   @override
   Widget build(BuildContext context) {
-    // Report button is not needed if capacity API is not supported
-    _updatePosition();
-
-    List capacity = getCapacity(widget.facility);
-    double x = getLatitude(widget.facility);
-    double y = getLongitude(widget.facility);
-
-    double latitude = _position?.latitude;
-    double longitude = _position?.longitude;
-
-    //Future<Position> position =  _determinePosition();
-    double distance = 0;
-
-    if (latitude != null && longitude != null) {
-      distance = Geolocator.distanceBetween(x, y, latitude, longitude);
-    }
-    var button = widget.facility.hasQueue
-        ? ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        elevation: 3,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(32.0)),
-        minimumSize: Size(100, 40), //////// HERE
-      ),
-      child: const Text('Reportar Estado'),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MyForm(facility: widget.facility)),
-        );
-      },
-    )
-        : null;
     return Scaffold(
         appBar: AppBar(
-          title: Center(
-            child: Text(widget.facility.name),
+          title: const Center(
+            child: Text('FEUPQ'),
           ),
         ),
-        body: Center(
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  getFacilityStatus(widget.facility,distance),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(height: 3, fontSize: 20),
-                ),
-              ),
-              Container(
-                child: button,
-              ),
-              /*FloatingActionButton(
-                onPressed: () {
-                  _updatePosition;
-                  print(_position);
-                },
-                backgroundColor: Colors.green,
-                child: const Icon(Icons.navigation),
-              ),*/
-            ])));
+    );
   }
-}
-
-String getFacilityStatus(Facility fac, double distance) {
-  var capacity = getCapacity(fac);
-  String display = "";
-  if (fac.hasCap) {
-    display += 'Max Capacity: ' +
-        capacity[0] +
-        '\n' +
-        'Available spots: ' +
-        capacity[1] +
-        '\n' +
-        'Occupied spots: ' +
-        capacity[2] +
-        '\n';
-  }
-  if (fac.hasQueue) {
-    display += "Estado da fila : " + getQueueState(fac) + '\n';
-  }
-  display += "Distância: " + distance.toInt().toString() + ' m\n';
-
-  return display;
 }
