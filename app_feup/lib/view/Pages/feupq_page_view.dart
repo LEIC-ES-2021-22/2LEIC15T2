@@ -81,7 +81,7 @@ class _HomeViewState extends SecondaryPageViewState {
           Text("Todas as Filas: ",
               style: const TextStyle(height: 3, fontSize: 20),textAlign: TextAlign.center),
           IconButton(
-            key: const ValueKey('searchBar'),
+            key: const ValueKey('searchIcon'),
             icon: Icon(Icons.search, color: Colors.black87),
 
             onPressed: () {

@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 Future<void> iSelectTheSearchBarAndSearch(
     WidgetTester tester, String text) async {
-  final searchBar = find.byKey(Key('searchBar'));
+  final searchBar = find.byKey(Key('searchIcon'));
   await tester.tap(searchBar);
   await tester.pumpAndSettle(Duration(seconds: 2));
-  await tester.enterText(searchBar, text);
+  await tester.enterText(find.byType(TextField), text);
   await tester.pumpAndSettle(const Duration(seconds: 2));
 }

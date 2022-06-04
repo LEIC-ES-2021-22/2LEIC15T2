@@ -19,6 +19,7 @@ class GraphChart extends StatelessWidget {
     ];
 
     return Container(
+      key: const ValueKey('Graph'),
       height: 300,
       padding: const EdgeInsets.all(10),
       child: Card(
