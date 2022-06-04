@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uni/model/utils/requests_model.dart';
 import 'package:uni/view/Pages/facility_page_view.dart';
+import 'package:uni/view/Pages/secondary_page_view.dart';
 import 'package:location/location.dart';
 import 'package:geolocator/geolocator.dart';
 import 'general_page_view.dart';
@@ -12,7 +13,7 @@ import 'package:uni/view/theme_notifier.dart';
 import 'form_page_view.dart';
 
 //void main() => runApp(const MyApp());
-
+/*
 class FeupQ extends StatelessWidget {
   const FeupQ({Key key}) : super(key: key);
 
@@ -24,17 +25,17 @@ class FeupQ extends StatelessWidget {
     );
   }
   //HomeView();
-}
+}*/
 // Filter makes it so the Widget is Stateful
-class HomeView extends StatefulWidget {
+class FeupQ extends StatefulWidget {
   final String authToken;
-  const HomeView({Key key, this.authToken}) : super(key: key);
+  const FeupQ({Key key, this.authToken}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends GeneralPageViewState {
+class _HomeViewState extends SecondaryPageViewState {
   final List<Facility> __facility = getFacilitiesList();
    List<Facility> facility;
   @override
@@ -46,6 +47,8 @@ class _HomeViewState extends GeneralPageViewState {
   // var nearestFacility = getNearestFacility();
   // facility.remove(nearestFacility);
   // facility.insert(0, nearestFacility);
+
+  //TORNAR SEARCH Scrollable
   @override
   Widget build(BuildContext context) {
     return getScaffold(context, Column(children: [

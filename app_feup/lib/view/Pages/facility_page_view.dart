@@ -8,7 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-
+import 'package:intl/intl.dart';
 class FacilityView extends StatefulWidget {
   final Facility facility;
   const FacilityView({Key key, this.facility}) : super(key: key);
@@ -118,6 +118,8 @@ String getFacilityStatus(Facility fac, double distance) {
     display += "Estado da fila : " + getQueueState(fac) + '\n';
   }
   display += "Distância: " + distance.toInt().toString() + ' m\n';
+ // var date = DateTime.now();
 
+ // display+="Dia semana:"+DateFormat('pt_BR').format(date)+"\n";
   return display;
 }
