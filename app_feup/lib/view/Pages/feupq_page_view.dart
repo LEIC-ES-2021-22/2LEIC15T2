@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uni/model/utils/requests_model.dart';
 import 'package:uni/view/Pages/facility_page_view.dart';
@@ -37,7 +38,7 @@ class FeupQ extends StatefulWidget {
 
 class _HomeViewState extends SecondaryPageViewState {
   final List<Facility> __facility = getFacilitiesList();
-   List<Facility> facility;
+  List<Facility> facility;
   @override
   void initState() {
     super.initState();
@@ -51,30 +52,43 @@ class _HomeViewState extends SecondaryPageViewState {
   //TORNAR SEARCH Scrollable
   @override
   Widget build(BuildContext context) {
-    return getScaffold(context, Column(children: [
-      FutureBuilder<Facility>(
-          future: getNearestFacility(facility),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Column(children: [
-                Text("Fila mais perto:",style: const TextStyle(height: 3, fontSize: 20)),
-                Card(
-                  child: ListTile(
-                      title: Text(snapshot.data.name),
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FacilityView(
-                              facility: facility[snapshot.data.id],
-                            )));
-                      }),
-                )
-              ]);
-            } else {
-              return Text("Não há fila mais proxima",style: const TextStyle(height: 3, fontSize: 20));
-            }
-          }),
-      Text("Todas as Filas: ",style: const TextStyle(height: 3, fontSize: 20)),
-      Padding(
+    return getScaffold(
+        context,
+        ListView(children: [
+          FutureBuilder<Facility>(
+              future: getNearestFacility(facility),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(children: [
+                    Text("Fila mais perto:",
+                        style: const TextStyle(height: 3, fontSize: 20)),
+                    Card(
+                      child: ListTile(
+                          title: Text(snapshot.data.name),
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => FacilityView(
+                                      facility: facility[snapshot.data.id],
+                                    )));
+                          }),
+                    )
+                  ]);
+                } else {
+                  return Text("Não há fila mais proxima",
+                      style: const TextStyle(height: 3, fontSize: 20),textAlign: TextAlign.center);
+                }
+              }),
+          Text("Todas as Filas: ",
+              style: const TextStyle(height: 3, fontSize: 20),textAlign: TextAlign.center),
+          IconButton(
+            key: const ValueKey('searchBar'),
+            icon: Icon(Icons.search, color: Colors.black87),
+
+            onPressed: () {
+              showSearch(context: context, delegate: MySearchDelegate());
+            },
+          ),
+          /*Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         child: TextField(
           key: const ValueKey("searchBar"),
@@ -96,47 +110,98 @@ class _HomeViewState extends SecondaryPageViewState {
             hintText: 'Barra de Pesquisa',
           ),
         ),
-      ),
-      ListView.builder(
-        key: ValueKey("Lista1"),
-        itemCount: facility.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-                title: Text(facility[index].name),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => FacilityView(
-                        facility: facility[index],
-                      )));
-                }),
-          );
-        },
-        shrinkWrap: true,
-      ),
-    ]));
-
+      ),*/
+          ListView.builder(
+            key: ValueKey("Lista1"),
+            itemCount: facility.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ListTile(
+                    title: Text(facility[index].name),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => FacilityView(
+                                facility: facility[index],
+                              )));
+                    }),
+              );
+            },
+            shrinkWrap: true,
+          ),
+        ]));
   }
 }
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key key}) : super(key: key);
+class MySearchDelegate extends SearchDelegate {
+  List<Facility> facilities = getFacilitiesList();
+  //MySearchDelegate({this.queues})
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            query = '';
+          })
+    ];
+  }
 
   @override
-  LoginViewState createState() => LoginViewState();
-}
-
-class LoginViewState extends State<LoginView> {
-  bool visible = true;
+  Widget buildLeading(BuildContext context) {
+    return IconButton(icon: Icon(Icons.arrow_back), onPressed: () {
+      close(context,query);
+    });
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text('FEUPQ'),
-          ),
-        ),
+  Widget buildResults(BuildContext context) {
+    List<Facility> allLocations = facilities
+        .where((facility) =>
+            facility.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    return ListView.builder(
+      key: ValueKey("Lista1"),
+      itemCount: allLocations.length,
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+              title: Text(allLocations[index].name),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FacilityView(
+                      facility: allLocations[index],
+                    )));
+              }),
+        );
+      },
+      shrinkWrap: true,
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<Facility> allLocations = facilities
+        .where((facility) =>
+        facility.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    return ListView.builder(
+      key: ValueKey("Lista1"),
+      itemCount: allLocations.length,
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+              title: Text(allLocations[index].name),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => FacilityView(
+                      facility: allLocations[index],
+                    )));
+              }),
+        );
+      },
+      shrinkWrap: true,
     );
   }
 }

@@ -49,7 +49,7 @@ class MyForm extends StatelessWidget {
                     borderRadius: BorderRadius.circular(32.0)),
                 minimumSize: Size(100, 40), //////// HERE
               ),
-              child: const Text('Submeter'),
+              child: const Text('Submeter'  ),
               onPressed: () {
                 switch(indexFinal){
                   case 0:
@@ -64,13 +64,8 @@ class MyForm extends StatelessWidget {
                   default:
                     break;
                 }
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => FacilityView(facility: facility),
-                  ),
-                      (route) => false,
-                );
+                Navigator.pop(context);
+
               },
 
             ),

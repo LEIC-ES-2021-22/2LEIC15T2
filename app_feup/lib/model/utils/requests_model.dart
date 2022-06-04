@@ -1,6 +1,9 @@
 import 'package:uni/model/entities/facility.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:uni/model/entities/graph.dart';
+import 'package:flutter/material.dart';
 
 var _facilities = [
   Facility(0, 'Parque 1 (Estacionamento) 🚗', hasCap: true, hasQueue: true),
@@ -142,4 +145,54 @@ List getFacilityPreviousQueues(Facility facility, DateTime day) {
     ],
     List<String>.generate(10, (i) => getQueueState(facility))
   ];
+}
+
+List getPrevisiondata(int day){
+  List<Graph> data;
+  if(day==0 || day==3 )
+     data = [
+    Graph("6-8", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    Graph("8-9", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    Graph("9-10", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+    Graph("10-11", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("11-12", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("12-13", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+    Graph("13-14", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+    Graph("14-15", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("15-16", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    Graph("16-17", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    Graph("17-18", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+  ];
+  else if(day==1 || day==4 || day==6){
+    data=[
+    Graph("6-8", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    Graph("8-9", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("9-10", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+    Graph("10-11", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("11-12", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+    Graph("12-13", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("13-14", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("14-15", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+    Graph("15-16", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("16-17", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+    Graph("17-18", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    ];
+  }
+  else if(day==2 || day==5){
+    data=[
+      Graph("6-8", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("8-9", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("9-10", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("10-11", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("11-12", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("12-13", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("13-14", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("14-15", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("15-16", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("16-17", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("17-18", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    ];
+
+  }
+  return data;
 }

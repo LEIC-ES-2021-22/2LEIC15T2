@@ -92,6 +92,7 @@ class MyAppState extends State<MyApp> {
               darkTheme: applicationDarkTheme,
               themeMode: themeNotifier.getTheme(),
               home: SplashScreen(),
+              debugShowCheckedModeBanner: false,
               navigatorKey: NavigationService.navigatorKey,
               // ignore: missing_return
               onGenerateRoute: (RouteSettings settings) {
