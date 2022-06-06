@@ -17,7 +17,7 @@ You can find here detailed about the product (or mini-app or module), from a hig
   * [Logical architecture](./docs/ArchitectureAndDesign.md#logical-architecture)
   * [Physical architecture](./docs/ArchitectureAndDesign.md#physical-architecture)
   * [Prototype](./docs/ArchitectureAndDesign.md#vertical-prototype)
-* [Implementation](.docs/implementation.mod)
+* [Implementation](.docs/implementation.md)
 * [Test]
 * [Configuration and change management]
 * [Project management](./docs/ProjectManagement.md)
