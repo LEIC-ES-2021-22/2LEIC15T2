@@ -25,7 +25,7 @@ class _FacilityView extends State<FacilityView> {
   }
 
   Future<void> _updatePosition() async {
-    Position pos = await determinePosition();
+    Position pos = MyPos.pos ?? await determinePosition();
     //List pm = await placemarkFromCoordinates(pos.latitude, pos.longitude);
     setState(() {
       _position = pos;
@@ -36,15 +36,12 @@ class _FacilityView extends State<FacilityView> {
   Widget build(BuildContext context) {
     // Report button is not needed if capacity API is not supported
     _updatePosition();
-
-    List capacity = getCapacity(widget.facility);
     double x = getLatitude(widget.facility);
     double y = getLongitude(widget.facility);
 
     double? latitude = _position?.latitude;
     double? longitude = _position?.longitude;
 
-    //Future<Position> position =  _determinePosition();
     double distance = 0;
 
     if (latitude != null && longitude != null) {
@@ -79,7 +76,7 @@ class _FacilityView extends State<FacilityView> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              getFacilityStatus(widget.facility,distance),
+              getFacilityStatus(widget.facility, distance),
               textAlign: TextAlign.center,
               style: const TextStyle(height: 3, fontSize: 20),
             ),
