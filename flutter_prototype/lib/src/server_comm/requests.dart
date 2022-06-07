@@ -2,10 +2,6 @@ import 'package:flutter_code/src/objects/facility.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
-class MyPos {
-  static Position? pos;
-}
-
 var _facilities = [
   Facility(0, 'Parque 1 (Estacionamento) 🚗', hasCap: true, hasQueue: true),
   Facility(1, 'Parque 2 (Estacionamento) 🚗', hasCap: true, hasQueue: true),
@@ -66,7 +62,7 @@ Future<Facility> getNearestFacility(List<Facility> facilities) async {
   double dist = double.maxFinite;
   Facility closestFacility = facilities[0];
   for (var facility in facilities) {
-    Position pos = MyPos.pos ?? await determinePosition();
+    Position pos = await determinePosition();
 
     var newDist = Geolocator.distanceBetween(getLatitude(facility),
         getLongitude(facility), pos.latitude, pos.longitude);
@@ -113,9 +109,7 @@ Future<Position> determinePosition() async {
 
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
-  Position pos = await Geolocator.getCurrentPosition();
-  MyPos.pos = pos;
-  return pos;
+  return await Geolocator.getCurrentPosition();
 }
 
 List getFacilityPreviousQueues(Facility facility, DateTime day) {
