@@ -5,5 +5,5 @@ Future<void> iSeeText(
   WidgetTester tester,
   String text,
 ) async {
-  expect(find.textContaining(text), findsOneWidget);
+  expect(find.textContaining(text), findsWidgets);
 }

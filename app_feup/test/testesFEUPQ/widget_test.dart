@@ -5,18 +5,19 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'dart:math';
-import 'dart:async';
+
+
 //import 'package:gherkin/gherkin.dart';
 import 'package:flutter/material.dart';
+import 'package:uni/model/entities/graph.dart';
 import 'package:uni/view/Pages/feupq_page_view.dart';
 import 'package:uni/view/Pages/facility_page_view.dart';
 import 'package:uni/view/Pages/form_page_view.dart';
 import 'package:uni/model/entities/facility.dart';
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:uni/model/utils/requests_model.dart';
-
+import 'package:collection/collection.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
@@ -36,233 +37,7 @@ Future<void> main() async {
     expect(getQueueState(fac1), "Mau");
   });
 
-  testWidgets('Tests Initial Page', (WidgetTester tester) async {
-    await tester.pumpWidget(const FeupQ());
-    expect(find.text('Parque 1 (Estacionamento) 🚗'), findsOneWidget);
-    expect(find.text('Parque 2 (Estacionamento) 🚗'), findsOneWidget);
-    expect(find.text('Parque 3 (Estacionamento) 🚗'), findsOneWidget);
-    expect(find.text('Cantina 🍽️'), findsOneWidget);
-    expect(find.text('Biblioteca 📚'), findsOneWidget);
-    expect(find.text('Mau'), findsNothing); //Não é suposto ter este
-  });
-  testWidgets('Tests Go to Parque 1 (Estacionamento)',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(const FeupQ());
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-  });
-
-  testWidgets('Test Enter Report State Page', (WidgetTester tester) async {
-    await tester.pumpWidget(const FeupQ());
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-    //reportar estado
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(find.text('Bom'), findsOneWidget);
-    expect(find.text('Mau'), findsOneWidget);
-    expect(find.text('Mais ou menos'), findsOneWidget);
-    expect(find.text('Submeter'), findsOneWidget);
-
-  });
-
-  testWidgets('Test Change Queue state to Mau', (WidgetTester tester) async {
-
-    //ir ao parque 1
-    await tester.pumpWidget(const FeupQ());
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //reportar estado
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.text('Mau'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //voltar ao parque1
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mau\n'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-
-  });
-
-  testWidgets('Test Change Queue state to Bom', (WidgetTester tester) async {
-
-    //ir ao parque 1
-    await tester.pumpWidget(const FeupQ());
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //reportar estado
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.text('Bom'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //voltar ao parque1
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-
-  });
-
-  testWidgets('Test Change Queue state to Mais ou menos then change to Bom', (WidgetTester tester) async {
-
-    //ir ao parque 1
-    await tester.pumpWidget(const FeupQ());
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //reportar estado
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.text('Mais ou menos'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //voltar ao parque1
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-
-    //reportar estado
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.text('Bom'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //voltar ao parque1
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-
-  });
-
-  testWidgets('Test Change Queue state when no changed Queue State', (WidgetTester tester) async {
-
-    //ir ao parque 1
-    await tester.pumpWidget(const FeupQ());
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //reportar estado
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //voltar ao parque1
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Bom'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-  });
-
-  testWidgets('Test Change Queue state when no changed Queue State after changing once', (WidgetTester tester) async {
-
-    //ir ao parque 1
-    await tester.pumpWidget(const FeupQ());
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //reportar estado
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.text('Mais ou menos'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    //voltar ao parque1
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Reportar Estado'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.widgetWithText(ElevatedButton, 'Submeter'));
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    await tester.tap(find.byType(Card).first);
-
-    await tester.pumpAndSettle(Duration(seconds: 2));
-
-    expect(
-        find.textContaining(
-            'Max Capacity: 525\nAvailable spots: 200\nOccupied spots: 325\nEstado da fila : Mais ou menos'),
-        findsOneWidget);
-    expect(find.text('Reportar Estado'), findsOneWidget);
-  });
-
-  testWidgets('Test Distance', (WidgetTester tester) async {
+  testWidgets('Test Null Psotion', (WidgetTester tester) async {
     Facility fac1 = new Facility(3, 'Cantina 🍽️');
     FacilityView widget = FacilityView(facility: fac1);
     final state = widget.createState();
@@ -270,6 +45,75 @@ Future<void> main() async {
 
     expect(state.getPosition()?.latitude,null);
     expect(state.getPosition()?.longitude,null);
+  });
+
+  testWidgets('Graph that is returned on Monday and Thursday', (WidgetTester tester) async {
+    List<Graph> expected= [
+      Graph("6-8", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("8-9", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("9-10", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("10-11", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("11-12", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("12-13", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("13-14", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("14-15", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("15-16", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("16-17", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("17-18", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    ];
+    List<Graph> result=getPrevisiondata(0);
+    for(int i=0; i<result.length;i++){
+      expect(result[i].barColor,expected[i].barColor);
+      expect(result[i].State,expected[i].State);
+      expect(result[i].hours,expected[i].hours);
+    }
+
+  });
+
+  testWidgets('Graph that is returned on Tuesday, Friday and Sunday', (WidgetTester tester) async {
+    List<Graph> expected= [
+      Graph("6-8", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("8-9", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("9-10", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("10-11", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("11-12", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("12-13", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("13-14", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("14-15", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("15-16", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("16-17", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("17-18", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    ];
+    List<Graph> result=getPrevisiondata(1);
+    for(int i=0; i<result.length;i++){
+      expect(result[i].barColor,expected[i].barColor);
+      expect(result[i].State,expected[i].State);
+      expect(result[i].hours,expected[i].hours);
+    }
+
+  });
+
+  testWidgets('Graph that is returned Wednesday and Saturday', (WidgetTester tester) async {
+    List<Graph> expected= [
+      Graph("6-8", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("8-9", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("9-10", 3, charts.ColorUtil.fromDartColor(Colors.red)),
+      Graph("10-11", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("11-12", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+      Graph("12-13", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("13-14", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("14-15", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("15-16", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("16-17", 2, charts.ColorUtil.fromDartColor(Colors.yellow)),
+      Graph("17-18", 1, charts.ColorUtil.fromDartColor(Colors.green)),
+    ];
+    List<Graph> result=getPrevisiondata(2);
+    for(int i=0; i<result.length;i++){
+      expect(result[i].barColor,expected[i].barColor);
+      expect(result[i].State,expected[i].State);
+      expect(result[i].hours,expected[i].hours);
+    }
+
   });
 
 }
