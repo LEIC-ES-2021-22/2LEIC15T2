@@ -66,7 +66,7 @@ Below, you can find information, plans, and retrospective about our project on t
            
 ## Final Release 
 
-* Release management: [Release 1.2](https://github.com/LEIC-ES-2021-22/2LEIC15T2/releases/tag/v1.2);
+* Release management: [Final Release](https://github.com/LEIC-ES-2021-22/2LEIC15T2/releases/tag/FinalRelease);
 
 * Iteration planning and retrospectives: 
   * Initial Board:
