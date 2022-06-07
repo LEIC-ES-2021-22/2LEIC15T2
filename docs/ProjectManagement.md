@@ -34,7 +34,7 @@ Below, you can find information, plans, and retrospective about our project on t
            Gherkin Tests</br>
            
 ## Release 1.2
-* Backlog management: Product backlog and Iteration backlog in a [Github Projects board](https://github.com/LEIC-ES-2021-22/templates/projects/1);
+
 * Release management: [Release 1.2](https://github.com/LEIC-ES-2021-22/2LEIC15T2/releases/tag/v1.2);
 * Iteration planning and retrospectives: 
   * Initial Board:
@@ -61,6 +61,38 @@ Below, you can find information, plans, and retrospective about our project on t
      * Puzzles: </br>
            Dificulty of user stories - some where underestimated</br>
            Integration of tests with the UNI app</br>
+           
+           
+           
+## Final Release 
+
+* Release management: [Release 1.2](https://github.com/LEIC-ES-2021-22/2LEIC15T2/releases/tag/v1.2);
+
+* Iteration planning and retrospectives: 
+  * Initial Board:
+ <p align="center" justify="center">
+  <img src="../images/finalreleaseinitial.png"/>
+</p>
+  * Final Board:
+ <p align="center" justify="center">
+  <img src="../images/finalreleasefinal (1).png"/>
+</p>
+
+ * Retrospectives: 
+ 
+     * Did well: </br>
+           Finished Gherkin Tests and Unit Tests</br>
+           Good communication among the team maintained</br> 
+           Dart programming is becoming more intuitive</br> 
+           
+           
+     * Do Differently:</br>
+          
+        
+         
+     * Puzzles: </br>
+           Integration of tests with the UNI app</br>
+           We were unable to optimize the GPS Location due to some bugs while interacting with the UNI app. </br>
            
            
            
