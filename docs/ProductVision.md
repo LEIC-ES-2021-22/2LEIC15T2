@@ -11,6 +11,7 @@ Prevenir a formação de filas de espera em vários lugares da faculdade, atrav�
 
 - Estado da fila: o utilizador consegue ver o seu estado atual de forma qualitativa (Mau, Mediano, Bom) da fila escolhida, este estado é atualizado através de uma checkbox que é demonstrada aos utilizadores que se encontrem na zona/fila.
 - Mostrar a fila corespondente baseado na localização do utilizador;
+- Mostrar a distância entre a localização do utilizador e a localização da instalação;
 - Aplicação de filtros: possibilidade de filtrar as listas que aparecem, alfabeticamente ou por departamento.
 - Estatisticas: o utilizador poderá ver um histórico da fila selecionada, de forma a perceber, por norma quais são as horas e dias mais frequentadas.
 
