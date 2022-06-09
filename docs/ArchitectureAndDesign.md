@@ -54,3 +54,32 @@ For the API's, we are using Google Maps API for GPS information.
 [As a member of the FEUP community, I want a way to report on a specific facility about its queue state, so that the community can also know about it.](https://github.com/LEIC-ES-2021-22/2LEIC15T2/issues/6)
 
 ![form](/images/form.jpg)
+
+
+
+
+### Final Version - Design 
+
+The main menu already integrated with the UNI app looks like this: 
+
+![main window](https://user-images.githubusercontent.com/52889593/172940204-8cefc8eb-072d-41d7-ba6e-7ed4f4dc8491.jpg)
+
+
+
+[As a member of the FEUP community, I want to check the queue status of a facility, so that I can plan ahead.](https://github.com/LEIC-ES-2021-22/2LEIC15T2/issues/3)
+
+![queue](/images/cantina.jpg)
+
+
+[As a member of the FEUP community, I want to be able to check a specific facility available capacity, so that I can plan ahead my journey.](https://github.com/LEIC-ES-2021-22/2LEIC15T2/issues/1)
+
+![available capacity](/images/parque 1.jpg)
+
+[As a member of the FEUP community, I want a way to report on a specific facility about its queue state, so that the community can also know about it.](https://github.com/LEIC-ES-2021-22/2LEIC15T2/issues/6)
+
+
+![report window](https://user-images.githubusercontent.com/52889593/172940016-5bc47a36-0c66-491a-9b62-6ed3f48d7b4f.jpg)
+
+
+The project ended with this visual interface, there was a improvement on functionalities but there is still some room for more improvement
+
