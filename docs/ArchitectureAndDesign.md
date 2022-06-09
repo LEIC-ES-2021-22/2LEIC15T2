@@ -19,6 +19,13 @@ To structure our app we used the following diagram:
 * System Logic receives all information from the packages above, and coordenates it with the FEUPQ server
 
 
+### Final Logical architecture
+![Final LogicalArchitecture](/images/LogicalArchitectureFinal.png)
+
+* For our final delivery there were some changes, initially we wanted to create a small chat that could allow users to interact and send real-time written reports so other users could see. This feature was not implemented due to time/reliability.
+* There was also a feature that consisted in the system sending us some notifications so we could manually report the status of a facility that we were in a few moments ago. Due to time it was not possible also to implement
+
+
 
 ### Physical architecture
 
