@@ -102,6 +102,34 @@ Example:
 | *Alternative flows and exceptions* | None
 
 
+### User stories
+
+##### Implemented
+
+- As a member of the FEUP community, I want to check a specific facility queue or available capacity predictions, so that i can properly plan ahead. 
+
+- As a member of the FEUP community, I want to check the queue status of a facility, so that I can plan ahead.
+
+- As a member of the FEUP community, I want to be able to filter the supported facilities list, so that I can quickly select a facility.
+
+- As a member of the FEUP community, I want a way to report on a specific facility about its queue state, so that the community can also know about it.
+
+- As a member of the FEUP community, I want to easily find the facility I'm looking for, so that I don't waste unnecessary time.
+
+- As a member of the FEUP community, I want to be able to check a specific facility available capacity, so that I can plan ahead my journey.
+
+##### Not implemented
+
+- As a member of the FEUP community, I want to be able to login, so that I know who I'm talking with.
+ 
+- As a member of the FEUP community, I want to report comments with false info, so that I can assure that the community chat is reliable.
+ 
+- As a member of the FEUP community, I want to look for a specific facility past data, so that I can search for patterns.
+
+- As a member of the FEUP community, I want a fast way to report on a specific facility about its queue state, so that the community can also know about it. 
+ 
+- As a member of the FEUP community, I want to communicate with other users at a certain facility, so that i can attain info about the facility and its services.
+
 
 
 ### Domain model
